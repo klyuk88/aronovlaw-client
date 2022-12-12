@@ -1,0 +1,10 @@
+<template>
+  <div>
+    <MainPageScreen/>
+    <MainPageTeam/>
+    <MainPageMedia/>
+    <MainPageClients/>
+    <MainPageMap/>
+    <TheFooter/>
+  </div>
+</template>
