@@ -44,9 +44,8 @@ const news = ref([
               class="big-logo"
             />
             <!-- :autoplay="{
-      delay: 2500,
-      disableOnInteraction: false,
-    }" -->
+                delay: 2500,
+              }" -->
             <!-- :pagination="{
                 type: 'progressbar',
               }" -->
@@ -57,6 +56,7 @@ const news = ref([
               :space-between="50"
               @swiper="onSwiper"
               :direction="'vertical'"
+              
               class="main-slider"
             >
               <SwiperSlide v-for="(item, index) in news" :key="index">
@@ -129,6 +129,7 @@ const news = ref([
 .main-content {
   display: grid;
   grid-template-columns: 50% 50%;
+  padding-top: 60px;
 
   .big-logo {
     width: 341px;

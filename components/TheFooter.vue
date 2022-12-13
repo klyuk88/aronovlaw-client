@@ -29,9 +29,7 @@
         </div>
 
       </div>
-      <div class="footer-top-anchor">
-        <img src="@/assets/img/chevron-down.svg" alt="">
-      </div>
+      
     </div>
   </footer>
 </template>
@@ -84,21 +82,4 @@
   margin-bottom: 0;
 }
 
-.footer-top-anchor {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 65px;
-  height: 65px;
-  background: var(--accent-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  img {
-    transform: rotate(-180deg);
-
-  }
-}
-  
 </style>

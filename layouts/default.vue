@@ -1,6 +1,10 @@
+<script setup>
+</script>
 <template>
-  <div>
-    <TheHeader/>
-    <slot/>
+  <div ref="page" @scroll="test(event)">
+    <TheHeader />
+    <slot ref=""/>
+    <TheFooter />
+    <TheWidget />
   </div>
 </template>
