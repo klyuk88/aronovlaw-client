@@ -43,15 +43,16 @@ const news = ref([
               alt="logo big"
               class="big-logo"
             />
-            <!-- :autoplay="{
-                delay: 2500,
-              }" -->
+           
             <!-- :pagination="{
                 type: 'progressbar',
               }" -->
             <Swiper
-              :modules="[Scrollbar]"
+              :modules="[Scrollbar, Autoplay]"
               :scrollbar="true"
+               :autoplay="{
+                delay: 2500,
+              }"
               :slides-per-view="1"
               :space-between="50"
               @swiper="onSwiper"
