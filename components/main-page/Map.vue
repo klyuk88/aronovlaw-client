@@ -45,6 +45,7 @@
     left: 0;
     top: 134px;
     z-index: 0;
+    // mix-blend-mode: ;
   }
   &-title {
     position: relative;

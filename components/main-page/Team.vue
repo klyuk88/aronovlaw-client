@@ -8,7 +8,6 @@ const teamSlider = ref(null);
 const onSwiper = (swiper) => {
   teamSlider.value = swiper;
 };
-const team = ref([1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]);
 
 const nextSlide = () => {
   teamSlider.value.slideNext();
@@ -44,13 +43,91 @@ const prevSlide = () => {
         @swiper="onSwiper"
         class="team-slider"
       >
-        <SwiperSlide v-for="(item, idx) in team" :key="idx">
+        <SwiperSlide>
             <img
-              :src="`http://localhost:3000/team/item-${item}.jpg`"
+              src="@/assets/img/team/item-2.jpg"
               alt=""
               class="team-slider-image"
             />
         </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-1.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-2.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-1.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-2.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-1.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-2.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-1.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-2.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-1.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-2.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img
+              src="@/assets/img/team/item-1.jpg"
+              alt=""
+              class="team-slider-image"
+            />
+        </SwiperSlide>
+ 
       </Swiper>
 
 
