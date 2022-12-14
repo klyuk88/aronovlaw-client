@@ -89,33 +89,11 @@ const news = ref([
               </SwiperSlide>
             </Swiper>
 
-            <!-- <div class="main-slider">
-              <div class="slider-item">
-                <div class="slider-item-content">
-                  <div class="slider-item-header">
-                    <p class="category">Семейное / наследственное право</p>
-                    <p class="date">11 ноября 2022</p>
-                  </div>
-
-                  <div class="slider-item-body">
-                    <p>
-                      Евгений Розенблат назначен руководителем практики сложных
-                      судебных споров МКА “Аронов и Партнеры”
-                    </p>
-                  </div>
-
-                  <NuxtLink to="#" class="slider-item-link">
-                    Читать далее
-                    <img src="@/assets/img/arrow-right.svg" alt="arrow right" />
-                  </NuxtLink>
-                </div>
-              </div>
-            </div> -->
           </div>
 
           <div>
             <img
-              src="@/assets/img/planet.png"
+              src="@/assets/planet/alfa.gif"
               alt="planet image"
               class="main-planet"
             />
