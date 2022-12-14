@@ -92,11 +92,12 @@ const news = ref([
           </div>
 
           <div>
-            <img
+            <video src="@/assets/planet/planet.mp4" autoplay loop muted playsinline class="main-planet video"></video>
+            <!-- <img
               src="@/assets/planet/alfa.gif"
               alt="planet image"
               class="main-planet"
-            />
+            /> -->
           </div>
         </div>
       </div>
@@ -151,11 +152,12 @@ const news = ref([
       gap: 20px;
     }
   }
-  .main-planet {
+  .main-planet.video {
     width: 457px;
     height: auto;
     margin-left: auto;
     display: block;
+    mix-blend-mode: screen;
   }
 }
 

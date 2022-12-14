@@ -197,7 +197,7 @@ const prevSlide = () => {
 
 .swiper.team-slider {
   .swiper-slide:hover {
-    transform: scale(1.25);
+    transform: scale(1.3);
     z-index: 2;
     .team-slider-image {
       width: 340px;
