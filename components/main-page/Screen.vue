@@ -92,7 +92,7 @@ const news = ref([
           </div>
 
           <div>
-            <video src="@/assets/planet/planet.mp4" autoplay loop muted playsinline class="main-planet video"></video>
+            <video src="@/assets/planet/planet-black.mp4" autoplay loop muted playsinline class="main-planet video"></video>
             <!-- <img
               src="@/assets/planet/alfa.gif"
               alt="planet image"
