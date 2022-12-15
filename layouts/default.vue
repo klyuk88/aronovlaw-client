@@ -1,9 +1,31 @@
+<script setup>
+import { ref } from 'vue'
+const page = ref(null)
+const showWidgets = useShowWidgets()
+
+const scrollHandler = () => {
+  if(page.value.scrollTop > page.value.clientHeight) {
+    showWidgets.value = true
+  } else {
+    showWidgets.value = false
+  }
+}
+
+const pageScrollTop = () => {
+  page.value.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  })
+}
+  </script>
 <template>
-  <div class="page-template">
+  <div class="page-template" @scroll="scrollHandler" ref="page">
     <TheHeader />
     <slot/>
     <TheFooter />
-    <TheWidget />
+
+    <TheWidget @scrollTop="pageScrollTop"/>
   </div>
 </template>
 

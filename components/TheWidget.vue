@@ -1,26 +1,9 @@
 <script setup>
 import { ref } from "vue";
-const showWidgets = ref(false);
-if (process.client) {
-  document.addEventListener("scroll", (event) => {
-    let percentScroll = (window.pageYOffset / document.body.scrollHeight) * 100;
-    if (percentScroll > 30) {
-      showWidgets.value = true;
-    } else {
-      showWidgets.value = false;
-    }
-  });
-}
-const scrollTop = () => {
-  if (process.client) {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  }
-};
 
+const emit = defineEmits(['scrollTop'])
+
+const showWidgets = useShowWidgets()
 
 </script>
 
@@ -30,7 +13,7 @@ const scrollTop = () => {
       <img src="@/assets/img/callback-icon.svg" alt="" />
     </div>
 
-    <div class="widget-item anchor" @click="scrollTop">
+    <div class="widget-item anchor" @click="$emit('scrollTop')">
       <img src="@/assets/img/chevron-down.svg" alt="" />
     </div>
   </div>
