@@ -7,6 +7,26 @@ html, body, * {
   margin: 0;
 }
 
+/* W3C standard
+   сейчас только для Firefox */
+   * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--dark-color);
+  }
+  
+  /* для Chrome/Edge/Safari */
+  *::-webkit-scrollbar {
+    width: 2px;
+  }
+  *::-webkit-scrollbar-track {
+    background: var(--dark-color);
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 0;
+    border: none;
+  }
+
 body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
@@ -59,4 +79,8 @@ a {
 .page-title {
   font-size: 32px;
   font-weight: 800;
+}
+
+.page-top {
+  padding-top: 135px;
 }

@@ -4,7 +4,7 @@ const page = ref(null)
 const showWidgets = useShowWidgets()
 
 const scrollHandler = () => {
-  if(page.value.scrollTop > page.value.clientHeight) {
+  if(page.value.scrollTop > page.value.clientHeight / 2) {
     showWidgets.value = true
   } else {
     showWidgets.value = false

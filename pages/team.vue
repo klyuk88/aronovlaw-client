@@ -22,7 +22,7 @@ const filters = reactive({
 </script>
 <template>
   <div>
-    <section class="team-page">
+    <section class="team-page page-top">
       <div class="container">
         <h1 class="page-title">Команда Аронов и партнеры</h1>
         <div class="team-search">
@@ -88,7 +88,6 @@ const filters = reactive({
 
 <style lang="scss">
 .team-page {
-  padding-top: 134px;
   padding-bottom: 120px;
 }
 .team-search {
