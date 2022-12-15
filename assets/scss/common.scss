@@ -11,7 +11,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  background: radial-gradient(261.98% 122.1% at 50% 122.1%, #EBF6FF 0%, #7B7D7F 44.27%, #383B3E 100%);
+  // background: radial-gradient(261.98% 122.1% at 50% 122.1%, #EBF6FF 0%, #7B7D7F 44.27%, #383B3E 100%);
   color: #fff;
 
 }
@@ -30,6 +30,7 @@ a {
 
 .container {
   max-width: 1110px;
+  box-sizing: content-box;
   padding-inline: 15px;
   margin-inline: auto;
 

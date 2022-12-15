@@ -50,11 +50,13 @@ const news = ref([
             <Swiper
               :modules="[Scrollbar, Autoplay]"
               :scrollbar="true"
+              :speed="500"
                :autoplay="{
                 delay: 2500,
+                pauseOnMouseEnter: true,
               }"
               :slides-per-view="1"
-              :space-between="50"
+              :space-between="15"
               @swiper="onSwiper"
               :direction="'vertical'"
               

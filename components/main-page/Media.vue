@@ -71,6 +71,41 @@
             </svg>
           </NuxtLink>
         </div>
+
+        <div class="media-item no-image">
+          <!-- <img
+            src="@/assets/img/media-thumb.jpg"
+            alt="media-thumbnail"
+            class="media-item-thumb"
+          /> -->
+          <div class="media-item-header">
+            <p>Семейное / наследственное право</p>
+          </div>
+          <div class="media-item-body">
+            <h3 class="media-item-date">11.11.2022</h3>
+            <h3 class="media-item-title">Прошла конференция Право.Ру</h3>
+            <p class="media-item-content">
+              Юристы и адвокаты обсуждали актуальные риски для директоров и
+              бенефициаров. А также объяснили, как избежать претензий со стороны
+              следствия при получении господдержки.
+            </p>
+          </div>
+          <NuxtLink to="#" class="media-item-link"
+            >Читать далее
+            <svg
+              width="14"
+              height="10"
+              viewBox="0 0 14 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.75 10L7.525 8.79167L10.6312 5.83333H0V4.16667H10.6312L7.525 1.20833L8.75 0L14 5L8.75 10Z"
+                fill="#038DFF"
+              />
+            </svg>
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </section>
@@ -93,7 +128,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  // min-height: 500px;
+  transition: background-color .3s ease;
   &-thumb {
     position: absolute;
     width: 100%;
@@ -179,14 +214,17 @@
     }
   }
   .media-item-content {
-    // max-height: 0;
     opacity: 0; 
     transition: opacity .2s ease
-    // transition: max-height .4s ease-in, opacity .2s ease
   }
   .media-item-thumb {
     opacity: 0.9;
     transition: opacity 0.4s ease;
   }
+}
+
+.media-item.no-image:hover {
+  background-color: var(--accent-color);
+  transition: background-color .3s ease;
 }
 </style>

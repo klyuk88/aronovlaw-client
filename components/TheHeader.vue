@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from "vue";
 const menu = ref([
-  { title: "О нас", slug: "/" },
+  { title: "О нас", slug: "#" },
   { title: "Команда", slug: "/team" },
-  { title: "Экспертиза", slug: "/" },
-  { title: "Офисы", slug: "/" },
-  { title: "Медиа", slug: "/" },
-  { title: "Блог", slug: "/" },
+  { title: "Экспертиза", slug: "#" },
+  { title: "Офисы", slug: "#" },
+  { title: "Медиа", slug: "#" },
+  { title: "Блог", slug: "#" },
 ]);
 </script>
 <template>
@@ -51,6 +51,11 @@ const menu = ref([
       a {
         color: #fff;
         text-decoration: none;
+        transition: color .2s ease;
+      }
+      a:hover {
+        color: var(--accent-color);
+        transition: color .2s ease;
       }
     }
   }
