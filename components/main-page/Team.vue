@@ -43,94 +43,18 @@ const prevSlide = () => {
         @swiper="onSwiper"
         class="team-slider"
       >
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-2.jpg"
-              alt=""
-              class="team-slider-image"
-            />
+        <SwiperSlide v-for="(item, index) in 12" :key="index">
+          <img
+            src="@/assets/img/team/item-1.jpg"
+            alt=""
+            class="team-slider-image"
+          />
+          <div class="team_slider-item_names">
+            <h3 class="team_slider-item_names-name">Александр Аронов</h3>
+            <p class="team_slider-item_names-post">Управляющий партнер</p>
+          </div>
         </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-1.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-2.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-1.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-2.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-1.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-2.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-1.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-2.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-1.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-2.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img
-              src="@/assets/img/team/item-1.jpg"
-              alt=""
-              class="team-slider-image"
-            />
-        </SwiperSlide>
- 
       </Swiper>
-
-
     </div>
   </section>
   <section class="estimation">
@@ -178,7 +102,7 @@ const prevSlide = () => {
     position: relative;
     height: 490px;
     z-index: 100;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
     z-index: 1;
     .team-slider-image {
       width: 100%;
@@ -188,9 +112,8 @@ const prevSlide = () => {
       position: absolute;
       z-index: 1;
       object-fit: cover;
-      transition: width .3s ease;
+      transition: width 0.3s ease;
       transform: translateX(-50%);
-      
     }
   }
 }
@@ -201,8 +124,12 @@ const prevSlide = () => {
     z-index: 2;
     .team-slider-image {
       width: 340px;
+      transition: width 0.3s ease;
     }
-
+    .team_slider-item_names {
+      opacity: 1;
+      transition: opacity .3s ease
+    }
   }
 }
 
@@ -267,4 +194,26 @@ const prevSlide = () => {
   text-align: center;
   text-transform: uppercase;
 }
+
+.team_slider-item_names {
+  position: absolute;
+  z-index: 2;
+  transform: translateX(-50%);
+  bottom: 30px;
+  left: -40px;
+  min-width: 220px;
+  opacity: 0;
+  transition: opacity .2s ease
+}
+.team_slider-item_names-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+.team_slider-item_names-post {
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+
 </style>
