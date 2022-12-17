@@ -1,86 +1,101 @@
 :root {
-  --dark-color: #212121;
-  --accent-color: #038DFF;
+    --dark-color: #212121;
+    --accent-color: #038DFF;
 }
-html, body, * {
-  padding: 0;
-  margin: 0;
+
+html,
+body,
+* {
+    padding: 0;
+    margin: 0;
 }
 
 /* W3C standard
    сейчас только для Firefox */
-   * {
+* {
     scrollbar-width: thin;
     scrollbar-color: var(--accent-color) var(--dark-color);
-  }
-  
-  /* для Chrome/Edge/Safari */
-  *::-webkit-scrollbar {
+}
+
+/* для Chrome/Edge/Safari */
+*::-webkit-scrollbar {
     width: 2px;
-  }
-  *::-webkit-scrollbar-track {
+}
+
+*::-webkit-scrollbar-track {
     background: var(--dark-color);
-  }
-  *::-webkit-scrollbar-thumb {
+}
+
+*::-webkit-scrollbar-thumb {
     background-color: var(--accent-color);
     border-radius: 0;
     border: none;
-  }
+}
 
 body {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  // background: radial-gradient(261.98% 122.1% at 50% 122.1%, #EBF6FF 0%, #7B7D7F 44.27%, #383B3E 100%);
-  color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    // background: radial-gradient(261.98% 122.1% at 50% 122.1%, #EBF6FF 0%, #7B7D7F 44.27%, #383B3E 100%);
+    color: #fff;
 
 }
+
 p {
-  line-height: 1.5;
+    line-height: 1.5;
 }
 
 a {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .container {
-  max-width: 1110px;
-  box-sizing: content-box;
-  padding-inline: 15px;
-  margin-inline: auto;
+    max-width: 1110px;
+    box-sizing: content-box;
+    padding-inline: 15px;
+    margin-inline: auto;
 
 }
 
 .section-title {
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 50px;
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 50px;
 }
 
 .section-top {
-  padding-top: 180px;
+    padding-top: 180px;
 }
 
 .btn {
-  background-color: var(--accent-color);
-  padding: 23px;
-  font-size: 20px;
-  font-weight: 500;
-  border: none;
-  color: #fff;
-  cursor: pointer;
+    background-color: var(--accent-color);
+    padding: 23px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    color: #fff;
+    cursor: pointer;
 }
 
 .page-title {
-  font-size: 32px;
-  font-weight: 800;
+    font-size: 32px;
+    font-weight: 800;
 }
 
 .page-top {
-  padding-top: 135px;
+    padding-top: 135px;
+}
+
+.page-bottom {
+    padding-bottom: 120px;
+}
+
+.list-unstyle {
+    list-style: none;
+    padding: 0;
 }

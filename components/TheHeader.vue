@@ -5,7 +5,7 @@ const menu = ref([
   { title: "Команда", slug: "/team" },
   { title: "Экспертиза", slug: "#" },
   { title: "Офисы", slug: "#" },
-  { title: "Медиа", slug: "/news" },
+  { title: "Медиа", slug: "/media" },
   { title: "Блог", slug: "#" },
 ]);
 </script>
