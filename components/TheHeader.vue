@@ -3,7 +3,7 @@ import { ref } from "vue";
 const menu = ref([
   { title: "О нас", slug: "#" },
   { title: "Команда", slug: "/team" },
-  { title: "Экспертиза", slug: "#" },
+  { title: "Экспертиза", slug: "/expertise" },
   { title: "Офисы", slug: "#" },
   { title: "Медиа", slug: "/media" },
   { title: "Блог", slug: "#" },
