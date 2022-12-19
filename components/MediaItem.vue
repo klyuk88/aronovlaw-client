@@ -49,9 +49,7 @@
   display: flex;
   flex-direction: column;
   transition: background-color 0.3s ease;
-  @media screen and (max-width: 1100px) {
-    aspect-ratio: 3/4;
-  }
+  aspect-ratio: 3/4;
   &-thumb {
     position: absolute;
     width: 100%;
@@ -68,10 +66,7 @@
     font-weight: 400;
     color: #038dff;
     opacity: 1;
-    margin-bottom: 60px;
-    @media screen and (max-width: 1100px) {
-      margin-bottom: auto;
-    }
+    margin-bottom: auto;
   }
   &-date {
     font-size: 24px;

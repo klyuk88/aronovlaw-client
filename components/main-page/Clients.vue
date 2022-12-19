@@ -11,11 +11,11 @@ const onSwiper = (swiper) => {
   clientsSlider.value = swiper;
 };
 const nextSlide = () => {
-  clientsSlider.value.slideNext()
-}
+  clientsSlider.value.slideNext();
+};
 const prevSlide = () => {
-clientsSlider.value.slidePrev()
-}
+  clientsSlider.value.slidePrev();
+};
 </script>
 <template>
   <section class="clients section-top">
@@ -29,11 +29,11 @@ clientsSlider.value.slidePrev()
           class="clients-slider"
           :breakpoints="{
             320: {
-              slidesPerView: 1
+              slidesPerView: 1,
             },
             1100: {
-              slidesPerView: 5
-            }
+              slidesPerView: 5,
+            },
           }"
         >
           <SwiperSlide
@@ -53,7 +53,7 @@ clientsSlider.value.slidePrev()
           class="clients-slider-nav next"
           src="@/assets/img/chevron-right.svg"
           alt=""
-           @click="nextSlide"
+          @click="nextSlide"
         />
       </div>
     </div>
@@ -62,7 +62,9 @@ clientsSlider.value.slidePrev()
 
 <style lang="scss">
 .clients {
-  padding-bottom: 120px;
+  @media screen and (max-width: 1100px) {
+    padding-bottom: 120px;
+  }
 }
 .clients-content {
   margin-top: 60px;

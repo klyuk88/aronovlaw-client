@@ -25,6 +25,7 @@ const filters = reactive({
     <section class="team-page page-top">
       <div class="container">
         <h1 class="page-title">Команда Аронов и партнеры</h1>
+
         <div class="team-search">
           <input
             type="text"
@@ -38,6 +39,12 @@ const filters = reactive({
             class="team-search-icon"
           />
         </div>
+
+        <div class="mobile_filters">
+          <img src="@/assets/img/filter-icon.svg" alt="">
+          <img src="@/assets/img/search-icon.svg" alt="">
+        </div>
+
         <div class="team-page-content">
           <div class="sidebar">
             <div class="sidebar-filter">
@@ -87,6 +94,15 @@ const filters = reactive({
 </template>
 
 <style lang="scss">
+.mobile_filters {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 60px;
+  @media screen and (max-width: 1100px) {
+    display: flex;
+  }
+}
 .team-page {
   padding-bottom: 120px;
 }
@@ -118,12 +134,18 @@ const filters = reactive({
     border-color: var(--accent-color);
     outline: none;
   }
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
 }
 .team-page-content {
   margin-top: 60px;
   display: grid;
   grid-template-columns: 25% 1fr;
   gap: 30px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 .sidebar {
   &-filter {
@@ -155,6 +177,9 @@ const filters = reactive({
   }
   &-filter:last-child {
     margin-bottom: 0;
+  }
+  @media screen and (max-width: 1100px) {
+    display: none;
   }
 }
 .team-page-items {
@@ -192,6 +217,10 @@ const filters = reactive({
       font-weight: 300;
       margin-top: 16px;
     }
+    @media screen and (max-width: 1100px) {
+      font-size: 20px;
+      font-weight: 700;
+    }
   }
   .team-page-item:after {
     content: "";
@@ -205,6 +234,12 @@ const filters = reactive({
       rgba(33, 33, 33, 0) 49.98%,
       #212121 99.98%
     );
+  }
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (max-width: 440px) {
+    grid-template-columns: 100%;
   }
 }
 .team-pagination {
