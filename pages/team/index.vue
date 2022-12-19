@@ -40,10 +40,7 @@ const filters = reactive({
           />
         </div>
 
-        <div class="mobile_filters">
-          <img src="@/assets/img/filter-icon.svg" alt="">
-          <img src="@/assets/img/search-icon.svg" alt="">
-        </div>
+        <MobileFilters/>
 
         <div class="team-page-content">
           <div class="sidebar">
@@ -94,15 +91,7 @@ const filters = reactive({
 </template>
 
 <style lang="scss">
-.mobile_filters {
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 60px;
-  @media screen and (max-width: 1100px) {
-    display: flex;
-  }
-}
+
 .team-page {
   padding-bottom: 120px;
 }

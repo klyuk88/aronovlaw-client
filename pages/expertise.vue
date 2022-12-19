@@ -13,7 +13,11 @@
             <div class="expertise_item-content">
               <h2 class="expertise_item-title">
                 Антимонопольное право
-                <img src="@/assets/img/expertise-arrow.svg" alt="" />
+                <img
+                  src="@/assets/img/expertise-arrow.svg"
+                  alt=""
+                  class="expertise_item-arrow"
+                />
               </h2>
               <p class="expertise_item-about">
                 Lorem Ipsum - это текст-"рыба", часто используемый в печати и
@@ -25,7 +29,6 @@
       </div>
 
       <div class="expertise-links">
-
         <div class="expertise-links-item" v-for="(item, idx) in 2" :key="idx">
           <NuxtLink to="#">
             <h4>
@@ -58,6 +61,13 @@
 </template>
 
 <style lang="scss">
+.expertise-links-item:hover {
+  @media screen and (max-width: 1100px) {
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
+  }
+}
+
 .expertise-links-item:last-child {
   margin-bottom: 0;
 }
@@ -69,27 +79,54 @@
     display: inline-flex;
     align-items: center;
     gap: 60px;
-    transition: color .2s ease;
-
+    transition: color 0.2s ease;
+    align-items: center;
+    @media screen and (max-width: 1100px) {
+      font-size: 13px;
+      font-weight: 500;
+      gap: 5px;
+      line-height: 1;
+    }
   }
   p {
     margin-top: 60px;
     font-size: 16px;
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
   }
   svg {
     width: 30px;
     height: auto;
     path {
-      transition: fill .2s ease;
+      transition: fill 0.2s ease;
+    }
+    @media screen and (max-width: 1100px) {
+      width: 8px;
+      height: auto;
     }
   }
   h4:hover {
     color: var(--accent-color);
-    transition: color .2s ease;
+    transition: color 0.2s ease;
     svg path {
       fill: var(--accent-color);
-      transition: fill .2s ease;
+      transition: fill 0.2s ease;
     }
+  }
+  @media screen and (max-width: 1100px) {
+    margin-bottom: 15px;
+    height: 75px;
+    background: linear-gradient(
+      28.93deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .expertise-links {
@@ -100,6 +137,13 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   margin-top: 60px;
+  @media screen and (max-width: 1100px) {
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 320px) {
+    grid-template-columns: 100%;
+  }
 }
 .expertise_item {
   padding: 30px;
@@ -116,17 +160,39 @@
   &-icon {
     width: 50px;
     height: auto;
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
   }
   &-title {
     font-size: 20px;
     font-weight: 500;
     color: #fff;
+    @media screen and (max-width: 1100px) {
+      font-size: 12px;
+      font-weight: 500;
+    }
   }
   &-about {
     font-size: 13px;
     font-weight: 300;
     color: #fff;
     margin-top: 30px;
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
+  }
+  &-arrow {
+    @media screen and (max-width: 1100px) {
+      width: 8px;
+    }
+  }
+  @media screen and (max-width: 1100px) {
+    padding: 25px;
+    max-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .expertise_item:hover {

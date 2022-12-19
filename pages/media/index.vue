@@ -6,13 +6,22 @@
       <div class="media_page-row">
         <div>
           <h1 class="page-title">Медиа</h1>
-          <ul class="media_nav list-unstyle">
-            <li>
-              <nuxt-link to="/media/news">Новости</nuxt-link>
-            </li>
-            <li><nuxt-link to="/media/publications">Публикации</nuxt-link></li>
-            <li><nuxt-link to="/media/all">Все</nuxt-link></li>
-          </ul>
+
+          <div class="media_page-sidebar">
+            
+            <ul class="media_nav list-unstyle">
+              <li>
+                <nuxt-link to="/media/news">Новости</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/media/publications">Публикации</nuxt-link>
+              </li>
+              <li><nuxt-link to="/media/all">Все</nuxt-link></li>
+            </ul>
+          </div>
+
+          <MobileFilters />
+
         </div>
 
         <div class="media_page-items">
@@ -25,9 +34,17 @@
 </template>
 
 <style lang="scss">
+.media_page-sidebar {
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
+}
 .media_page-row {
   display: grid;
   grid-template-columns: 25% 1fr;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 .media_nav {
   margin-top: 60px;
@@ -52,6 +69,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 
 .media_page-pagination {
