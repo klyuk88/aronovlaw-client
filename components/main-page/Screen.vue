@@ -37,13 +37,14 @@ const news = ref([
     <section class="main">
       <div class="container">
         <div class="main-content">
-          <div>
+          <div class="col-1">
             <img
               src="@/assets/img/logo-big.svg"
               alt="logo big"
               class="big-logo"
             />
-           
+            <h1 class="screen-mob_title">Международная юридическая фирма</h1>
+
             <!-- :pagination="{
                 type: 'progressbar',
               }" -->
@@ -51,7 +52,7 @@ const news = ref([
               :modules="[Scrollbar, Autoplay]"
               :scrollbar="true"
               :speed="500"
-               :autoplay="{
+              :autoplay="{
                 delay: 2500,
                 pauseOnMouseEnter: true,
               }"
@@ -59,7 +60,6 @@ const news = ref([
               :space-between="15"
               @swiper="onSwiper"
               :direction="'vertical'"
-              
               class="main-slider"
             >
               <SwiperSlide v-for="(item, index) in news" :key="index">
@@ -90,16 +90,18 @@ const news = ref([
                 </div>
               </SwiperSlide>
             </Swiper>
-
           </div>
 
-          <div>
-            <video src="@/assets/planet/planet-black.mp4" autoplay loop muted playsinline class="main-planet video"></video>
-            <!-- <img
-              src="@/assets/planet/alfa.gif"
-              alt="planet image"
-              class="main-planet"
-            /> -->
+          <div class="col-2">
+            <video
+              src="@/assets/planet/planet-black.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="main-planet video"
+            ></video>
+            
           </div>
         </div>
       </div>
@@ -112,16 +114,36 @@ const news = ref([
   display: grid;
   grid-template-columns: 50% 50%;
   padding-top: 60px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
+  .col-1 {
+    @media screen and (max-width: 1100px) {
+    }
+  }
+  .col-2 {
+    @media screen and (max-width: 1100px) {
+      grid-row-start: 1;
+    }
+  }
 
   .big-logo {
     width: 341px;
     height: auto;
     margin-top: 90px;
+    @media screen and (max-width: 1100px) {
+      margin-top: 50px;
+      margin-inline: auto;
+      display: block;
+    }
   }
   .main-slider {
     margin-top: 97px;
     max-height: 280px;
     min-width: 570px;
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
   }
   .slider-item {
     background: linear-gradient(
@@ -160,21 +182,12 @@ const news = ref([
     margin-left: auto;
     display: block;
     mix-blend-mode: screen;
+    @media screen and (max-width: 1100px) {
+      max-width: 260px;
+      margin: 0 auto;
+    }
   }
 }
-
-// .swiper.main-slider .swiper-pagination.swiper-pagination-progressbar.swiper-pagination-vertical {
-//   right: 0;
-//   left: auto;
-//   width: 5px;
-//   height: 80%;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   background: rgba($color: #212121, $alpha: 0.2);
-//   .swiper-pagination-progressbar-fill {
-//     background: #fff;
-//   }
-// }
 
 .swiper.main-slider .swiper-scrollbar.swiper-scrollbar-vertical {
   border-radius: 0;
@@ -186,6 +199,19 @@ const news = ref([
   .swiper-scrollbar-drag {
     background: #fff;
     border-radius: 0;
+  }
+}
+
+.screen-mob_title {
+  display: none;
+  font-size: 15px;
+  font-weight: 300;
+  opacity: 0.5;
+  margin-top: 8px;
+  text-align: center;
+  @media screen and (max-width: 1100px) {
+    display: block;
+
   }
 }
 </style>

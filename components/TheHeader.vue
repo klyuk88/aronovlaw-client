@@ -13,7 +13,9 @@ const menu = ref([
   <header>
     <div class="container">
       <div class="header-content">
-        <NuxtLink to="/"><img src="@/assets/img/logo.svg" alt="" class="logo header" /></NuxtLink>
+        <NuxtLink to="/"
+          ><img src="@/assets/img/logo.svg" alt="" class="logo header"
+        /></NuxtLink>
         <nav>
           <ul class="menu">
             <li v-for="(item, index) in menu" :key="index">
@@ -26,6 +28,10 @@ const menu = ref([
           <span>RU</span>
           <img src="@/assets/img/chevron-down.svg" alt="" />
         </div>
+        <div class="header-mob_menu">
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </div>
   </header>
@@ -36,6 +42,9 @@ const menu = ref([
   display: flex;
   align-items: center;
   padding-top: 60px;
+  @media screen and (max-width: 1100px) {
+    padding-top: 30px;
+  }
   .logo {
     width: 65px;
     height: auto;
@@ -48,14 +57,17 @@ const menu = ref([
       display: flex;
       align-items: center;
       gap: 70px;
+      @media screen and (max-width: 1100px) {
+        display: none;
+      }
       a {
         color: #fff;
         text-decoration: none;
-        transition: color .2s ease;
+        transition: color 0.2s ease;
       }
       a:hover {
         color: var(--accent-color);
-        transition: color .2s ease;
+        transition: color 0.2s ease;
       }
     }
   }
@@ -68,6 +80,38 @@ const menu = ref([
     span {
       font-size: 14px;
     }
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
+  }
+}
+
+.header-mob_menu {
+  display: none;
+  margin-left: auto;
+  width: 36px;
+  position: relative;
+  height: 15px;
+  cursor: pointer;
+  @media screen and (max-width: 1100px) {
+    display: block;
+  }
+}
+
+.header-mob_menu {
+  div {
+    height: 1px;
+    background: rgba($color: #fff, $alpha: 0.5);
+    position: absolute;
+    left: 0;
+  }
+  div:first-child {
+    width: 100%;
+    top: 0;
+  }
+  div:last-child {
+    width: 100%;
+    bottom: 0;
   }
 }
 </style>

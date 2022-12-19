@@ -27,6 +27,14 @@ clientsSlider.value.slidePrev()
           :space-between="60"
           @swiper="onSwiper"
           class="clients-slider"
+          :breakpoints="{
+            320: {
+              slidesPerView: 1
+            },
+            1100: {
+              slidesPerView: 5
+            }
+          }"
         >
           <SwiperSlide
             class="clients-slider-item"
@@ -53,6 +61,9 @@ clientsSlider.value.slidePrev()
 </template>
 
 <style lang="scss">
+.clients {
+  padding-bottom: 120px;
+}
 .clients-content {
   margin-top: 60px;
   position: relative;
@@ -75,6 +86,8 @@ clientsSlider.value.slidePrev()
         max-width: 143px;
         opacity: 0.5;
         transition: opacity 0.2s ease;
+        margin-inline: auto;
+        display: block;
       }
     }
     &-item {

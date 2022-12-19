@@ -37,6 +37,9 @@
 
 <style lang="scss">
 .map {
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
   margin-top: 180px;
   position: relative;
   &-frame {
