@@ -140,10 +140,10 @@ const prevSlide = () => {
         transform: translateX(0);
       }
     }
-    @media screen and (max-width: 1100px) {
-      height: inherit;
-      aspect-ratio: 3/4;
-    }
+    // @media screen and (max-width: 768px) {
+    //   height: 550px;
+
+    // }
   }
 }
 

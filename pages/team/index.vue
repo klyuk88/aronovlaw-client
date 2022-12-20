@@ -178,7 +178,7 @@ const filters = reactive({
   .team-page-item {
     position: relative;
     width: 100%;
-    aspect-ratio: 17/24;
+    height: 360px;
     padding: 35px 30px;
     flex-direction: column;
     display: flex;
@@ -207,8 +207,10 @@ const filters = reactive({
       margin-top: 16px;
     }
     @media screen and (max-width: 1100px) {
-      font-size: 20px;
-      font-weight: 700;
+      height: 400px;
+    }
+    @media screen and (max-width: 567px) {
+      height: 490px;
     }
   }
   .team-page-item:after {

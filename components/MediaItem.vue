@@ -49,7 +49,7 @@
   display: flex;
   flex-direction: column;
   transition: background-color 0.3s ease;
-  aspect-ratio: 3/4;
+  height: 490px;
   &-thumb {
     position: absolute;
     width: 100%;
