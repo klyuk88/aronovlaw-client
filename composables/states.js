@@ -1,2 +1,2 @@
 export const useShowWidgets = () => useState('showWidgets', () => false)
-export const useScrollTop = () => useState('scrollTop', () => false)
+export const useShowPopup = () => useState('showPopup', () => false)

@@ -4,13 +4,14 @@ import { ref } from "vue";
 const emit = defineEmits(['scrollTop'])
 
 const showWidgets = useShowWidgets()
+const showPopup = useShowPopup()
 
 </script>
 
 <template>
   <div class="widgets" :class="{ active: showWidgets }">
-    <div class="widget-item" v-if="$route.path !== '/'">
-      <img src="@/assets/img/callback-icon.svg" alt="" />
+    <div class="widget-item" @click="showPopup = true">
+      <img src="@/assets/img/callback-icon.svg" alt=""/>
     </div>
 
     <div class="widget-item anchor" @click="$emit('scrollTop')">

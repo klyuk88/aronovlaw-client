@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 const page = ref(null)
 const showWidgets = useShowWidgets()
+const showPopup = useShowPopup()
 
 const scrollHandler = () => {
   if(page.value.scrollTop > page.value.clientHeight / 2) {
@@ -24,8 +25,9 @@ const pageScrollTop = () => {
     <TheHeader />
     <slot/>
     <TheFooter />
-
     <TheWidget @scrollTop="pageScrollTop"/>
+    <ThePopupForm v-if="showPopup"/>
+
   </div>
 </template>
 

@@ -116,6 +116,9 @@
   display: grid;
   grid-template-columns: 25% 1fr;
   gap: 30px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 .single_page-nav {
   display: flex;
@@ -162,6 +165,10 @@
     padding-bottom: 20px;
     font-size: 28px;
     font-weight: 700;
+    @media screen and (max-width: 1100px) {
+      font-size: 24px;
+      font-weight: 600;
+    }
   }
   p {
     color: #fff;
@@ -188,11 +195,18 @@
       object-fit: cover;
 
     }
+    @media screen and (max-width: 1100px) {
+      width: 60px;
+      height: 60px;
+    }
   
   }
   .author_name {
     font-size: 16px;
     font-weight: 300;
+  }
+  @media screen and (max-width: 1100px) {
+    gap: 15px;
   }
 }
 </style>

@@ -2,9 +2,12 @@
   <section class="team_single page-top page-bottom">
     <div class="container">
       <div class="team_single-header">
+
         <div>
           <h1 class="team_single-name">Розенблат Евгений</h1>
           <h2 class="team_single-post">Адвокат</h2>
+
+          <img src="@/assets/img/dev_images/single-team-image.jpg" alt="" class="team_single-mob_thumb">
 
           <div class="team_single-header_item">
             <h3 class="team_single-subtitle">Практика</h3>
@@ -24,7 +27,7 @@
             </ul>
           </div>
 
-          <div class="team_single-header_item">
+          <div class="team_single-header_item contacts">
             <a href="#" class="team_single-header_link">v-сard</a>
             <a href="mailto:re@aronovlaw.ru" class="team_single-header_link"
               >re@aronovlaw.ru</a
@@ -39,7 +42,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="team_single-thumb_wrap">
           <div class="team_single-thumb">
             <img
               src="@/assets/img/dev_images/single-team-image.jpg"
@@ -60,6 +63,7 @@
             </svg>
           </div>
         </div>
+
       </div>
 
       <div class="team_single-about">
@@ -191,6 +195,28 @@
 </template>
 
 <style lang="scss">
+.team_single-thumb_wrap {
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
+}
+.team_single .team_single-header_item.contacts {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  @media screen and (max-width: 1100px) {
+    justify-content: space-between;
+  }
+}
+.team_single-mob_thumb {
+  display: none;
+  width: 100%;
+  height: auto;
+  margin-bottom: 60px;
+  @media screen and (max-width: 1100px) {
+    display: block;
+  }
+}
 .team_single-media-header {
   display: flex;
   align-items: center;
@@ -201,6 +227,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 .team_single-media {
   margin-top: 120px;
@@ -210,6 +239,9 @@
   display: grid;
   grid-template-columns: 1fr 50%;
   gap: 100px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 
 .team_single-thumb {
@@ -227,12 +259,21 @@
 .team_single-name {
   font-size: 46px;
   font-weight: 800;
+  @media screen and (max-width: 1100px) {
+    font-size: 30px;
+    font-weight: 700;
+  }
 }
 
 .team_single-post {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 60px;
+  color: var(--accent-color);
+  @media screen and (max-width: 1100px) {
+    font-size: 24px;
+    font-weight: 600;
+  }
 }
 .team_single-subtitle {
   font-size: 18px;
@@ -240,10 +281,14 @@
 }
 .team_single-list {
   margin-top: 15px;
+  padding-left: 20px;
   li {
     font-size: 14px;
     font-weight: 400;
     line-height: 2;
+    @media screen and (max-width: 1100px) {
+      font-size: 13px;
+    }
   }
 }
 
@@ -265,6 +310,10 @@
   font-weight: 300;
   font-style: italic;
   opacity: 0.7;
+  @media screen and (max-width: 1100px) {
+    text-align: center;
+    margin-top: 60px;
+  }
 }
 
 .team_single-about {
@@ -281,6 +330,11 @@
   grid-template-columns: 41% 41%;
   column-gap: 18%;
   row-gap: 60px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+    column-gap: 0;
+    row-gap: 30px;
+  }
 }
 
 .team_single-cases_item {
@@ -288,6 +342,9 @@
     font-size: 20px;
     font-weight: 600;
     transition: color 0.2s ease;
+    @media screen and (max-width: 1100px) {
+      font-size: 14px;
+    }
   }
   span {
     font-size: 15px;
@@ -295,6 +352,9 @@
     opacity: 0.5;
     margin-top: 15px;
     display: block;
+    @media screen and (max-width: 1100px) {
+      font-size: 14px;
+    }
   }
   svg path {
     transition: fill 0.2s ease;
