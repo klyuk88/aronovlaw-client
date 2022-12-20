@@ -179,7 +179,7 @@ const news = ref([
     height: auto;
     margin-left: auto;
     display: block;
-    mix-blend-mode: screen;
+    // mix-blend-mode: screen;
     @media screen and (max-width: 1100px) {
       width: 260px;
       margin: 0 auto;
