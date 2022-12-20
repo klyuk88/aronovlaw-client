@@ -136,6 +136,9 @@ const news = ref([
       margin-inline: auto;
       display: block;
     }
+    @media screen and (max-width: 320px) {
+      width: 100%;
+    }
   }
   .main-slider {
     margin-top: 97px;
