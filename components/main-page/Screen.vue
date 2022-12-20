@@ -37,6 +37,7 @@ const news = ref([
     <section class="main">
       <div class="container">
         <div class="main-content">
+
           <div class="col-1">
             <img
               src="@/assets/img/logo-big.svg"
@@ -44,10 +45,6 @@ const news = ref([
               class="big-logo"
             />
             <h1 class="screen-mob_title">Международная юридическая фирма</h1>
-
-            <!-- :pagination="{
-                type: 'progressbar',
-              }" -->
             <Swiper
               :modules="[Scrollbar, Autoplay]"
               :scrollbar="true"
@@ -99,6 +96,7 @@ const news = ref([
               loop
               muted
               playsinline
+              poster=""
               class="main-planet video"
             ></video>
             
@@ -116,10 +114,6 @@ const news = ref([
   padding-top: 60px;
   @media screen and (max-width: 1100px) {
     grid-template-columns: 100%;
-  }
-  .col-1 {
-    @media screen and (max-width: 1100px) {
-    }
   }
   .col-2 {
     @media screen and (max-width: 1100px) {
@@ -186,7 +180,7 @@ const news = ref([
     display: block;
     mix-blend-mode: screen;
     @media screen and (max-width: 1100px) {
-      max-width: 260px;
+      width: 260px;
       margin: 0 auto;
     }
   }
