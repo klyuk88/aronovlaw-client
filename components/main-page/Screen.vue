@@ -91,14 +91,15 @@ const news = ref([
 
           <div class="col-2">
             <video
-              src="@/assets/planet/planet-black.mp4"
               autoplay
               loop
               muted
               playsinline
-              poster=""
               class="main-planet video"
-            ></video>
+            >
+            <source src="@/assets/planet/planet-black.mp4" type="video/mp4">
+            <source src="@/assets/planet/planet-black.webm" type="video/webm">
+            </video>
             
           </div>
         </div>

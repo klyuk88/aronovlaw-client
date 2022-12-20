@@ -246,7 +246,7 @@
 
 .team_single-thumb {
   width: 100%;
-  aspect-ratio: 1/1;
+  padding-bottom: 100%;
   position: relative;
   #btn_video {
     position: absolute;
