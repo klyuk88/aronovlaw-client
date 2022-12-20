@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+const showMobMenu = useShowMobMenu()
 const menu = ref([
   { title: "О нас", slug: "#" },
   { title: "Команда", slug: "/team" },
@@ -28,7 +29,9 @@ const menu = ref([
           <span>RU</span>
           <img src="@/assets/img/chevron-down.svg" alt="" />
         </div>
-        <div class="header-mob_menu">
+        <div class="header-mob_menu"
+        @click="showMobMenu = !showMobMenu"
+        >
           <div></div>
           <div></div>
         </div>

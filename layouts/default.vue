@@ -27,6 +27,7 @@ const pageScrollTop = () => {
     <TheFooter />
     <TheWidget @scrollTop="pageScrollTop"/>
     <ThePopupForm v-if="showPopup"/>
+    <MobileMenu/>
 
   </div>
 </template>
