@@ -95,11 +95,10 @@ const news = ref([
               loop
               muted
               playsinline
-              width="457"
+              controls
               class="main-planet video"
+              src="@/assets/planet/planet-black.mp4"
             >
-            <source src="@/assets/planet/planet-black.mp4" type="video/mp4">
-            <source src="@/assets/planet/planet-black.webm" type="video/webm">
             </video>
             
           </div>
