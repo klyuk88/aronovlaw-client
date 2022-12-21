@@ -95,9 +95,8 @@ const news = ref([
               loop
               muted
               playsinline
-              controls
               class="main-planet video"
-              src="/planet-black.mp4"
+              src="~/assets/planet/planet-black.mp4"
             >
             </video>
             
