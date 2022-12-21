@@ -36,6 +36,7 @@ const news = ref([
   <div>
     <section class="main">
       <div class="container">
+        <video src="@/assets/test.mp4" controls playsinline></video>
         <div class="main-content">
 
           <div class="col-1">
