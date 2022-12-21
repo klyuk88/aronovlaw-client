@@ -8,7 +8,8 @@ const showMobMenu = useShowMobMenu()
 <!-- :style="{display: showMobMenu ? 'block' : 'none'}" -->
   <div class="mob_menu" :class="{show: showMobMenu}">
     <div class="mob_menu-wrap">
-      <div class="mob_menu-header">
+      <div>
+              <div class="mob_menu-header">
         <div class="mob_menu-lang_switch">
           <span>RU</span>
           <img src="@/assets/img/chevron-r.svg" alt="" />
@@ -64,10 +65,17 @@ const showMobMenu = useShowMobMenu()
           <nuxt-link to="#">Блог</nuxt-link>
         </li>
       </ul>
+
+      </div>
+
+      <img src="~/assets/img/big-logo-footer.svg" alt="" class="mob_menu-logo">
     </div>
   </div>
 </template>
 <style lang="scss">
+.mob_menu-logo {
+  max-width: 250px;
+}
 .mob_menu-items-item_with_submenu {
   position: relative;
   .mob_menu-items-arrow {
@@ -96,7 +104,7 @@ const showMobMenu = useShowMobMenu()
 .mob_menu {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 100;
   transform: translateX(-100%);
   top: 0;
@@ -104,10 +112,15 @@ const showMobMenu = useShowMobMenu()
   background-color: rgba($color: #383b3e, $alpha: 0.9);
   backdrop-filter: blur(6px);
   transition: transform .3s ease-out, left .1s ease-out .3s;
+  padding: 60px;
+  display: flex;
+  justify-content: center;
   .mob_menu-wrap {
-    width: 200px;
-    margin-inline: auto;
-    margin-top: 10vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
   }
   .mob_menu-header {
     display: flex;
@@ -140,6 +153,9 @@ const showMobMenu = useShowMobMenu()
         color: var(--accent-color);
       }
     }
+  }
+  @media screen and (max-width: 320px) {
+    padding: 25px;
   }
 }
 .mob_menu.show {
