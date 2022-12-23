@@ -1,6 +1,9 @@
+<script setup>
+const emits = defineEmits(['clickFilter'])
+</script>
 <template>
   <div class="mobile_filters">
-    <img src="@/assets/img/filter-icon.svg" alt="" />
+    <img src="@/assets/img/filter-icon.svg" alt="" @click="$emit('clickFilter')"/>
     <img src="@/assets/img/search-icon.svg" alt="" />
   </div>
 </template>

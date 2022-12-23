@@ -22,7 +22,7 @@ const filters = reactive({
   office: ["Москва", "Ташкент", "Дубай"],
 });
 
-
+const showFilters = ref(false)
 </script>
 <template>
   <div>
@@ -44,10 +44,11 @@ const filters = reactive({
           />
         </div>
 
-        <MobileFilters />
+        <MobileFilters @clickFilter="showFilters = true"/>
 
         <div class="team-page-content">
-          <div class="sidebar">
+          <div class="sidebar mob_filters" :class="{active: showFilters}">
+            <img src="~/assets/img/close-filters.svg" alt="" class="close_filters_btn" @click="showFilters = false">
             <div class="sidebar-filter">
               <h2 class="sidebar-filter-title">Практика</h2>
               <ul class="sidebar-filter-list">
@@ -169,9 +170,6 @@ const filters = reactive({
   }
   &-filter:last-child {
     margin-bottom: 0;
-  }
-  @media screen and (max-width: 1100px) {
-    display: none;
   }
 }
 .team-page-items {

@@ -1,4 +1,8 @@
 <script setup>
+import { ref } from 'vue'
+const showFilters = ref(false)
+
+
 </script>
 <template>
   <section class="media_page page-top page-bottom">
@@ -6,8 +10,10 @@
       <div class="media_page-row">
         <div>
           <h1 class="page-title">Медиа</h1>
+          <MobileFilters @clickFilter="showFilters=true"/>
 
-          <div class="media_page-sidebar">
+          <div class="media_page-sidebar mob_filters" :class="{active: showFilters}">
+            <img src="~/assets/img/close-filters.svg" alt="" class="close_filters_btn" @click="showFilters = false">
             
             <ul class="media_nav list-unstyle">
               <li>
@@ -19,8 +25,6 @@
               <li><nuxt-link to="/media/all">Все</nuxt-link></li>
             </ul>
           </div>
-
-          <MobileFilters />
 
         </div>
 
@@ -34,11 +38,7 @@
 </template>
 
 <style lang="scss">
-.media_page-sidebar {
-  @media screen and (max-width: 1100px) {
-    display: none;
-  }
-}
+
 .media_page-row {
   display: grid;
   grid-template-columns: 25% 1fr;
