@@ -196,8 +196,8 @@
 
     }
     @media screen and (max-width: 1100px) {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
     }
   
   }

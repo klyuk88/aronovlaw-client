@@ -147,11 +147,7 @@
 }
 .expertise_item {
   padding: 30px;
-  background: linear-gradient(
-    28.93deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   height: 345px;
   display: flex;
