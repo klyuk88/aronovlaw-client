@@ -90,8 +90,8 @@ const news = ref([
           </div>
 
           <div class="col-2">
-            <img src="~/assets/planet/planet.gif" alt="" class="planet_gif">
-            <!-- <video
+            <!-- <img src="~/assets/planet/planet.gif" alt="" class="planet_gif"> -->
+            <video
               autoplay
               loop
               muted
@@ -99,7 +99,7 @@ const news = ref([
               class="main-planet video"
               src="~/assets/planet/planet-black.mp4"
             >
-            </video> -->
+            </video>
             
           </div>
         </div>
@@ -109,16 +109,16 @@ const news = ref([
 </template>
 
 <style lang="scss">
-.planet_gif {
-  max-width: 480px;
-  margin-left: auto;
-  display: block;
-  @media screen and (max-width: 1100px) {
-    width: 260px;
-    margin: 0 auto;
-  }
+// .planet_gif {
+//   max-width: 480px;
+//   margin-left: auto;
+//   display: block;
+//   @media screen and (max-width: 1100px) {
+//     width: 260px;
+//     margin: 0 auto;
+//   }
 
-}
+// }
 .main-content {
   display: grid;
   grid-template-columns: 50% 50%;
