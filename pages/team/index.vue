@@ -1,5 +1,7 @@
 <script setup>
-import { reactive } from "vue";
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
+import { reactive, ref } from "vue";
 const filters = reactive({
   practic: [
     "Антимонопольное право",
@@ -19,13 +21,15 @@ const filters = reactive({
   ],
   office: ["Москва", "Ташкент", "Дубай"],
 });
+
+
 </script>
 <template>
   <div>
     <section class="team-page page-top">
       <div class="container">
         <h1 class="page-title">Команда Аронов и партнеры</h1>
-
+        
         <div class="team-search">
           <input
             type="text"
@@ -40,7 +44,7 @@ const filters = reactive({
           />
         </div>
 
-        <MobileFilters/>
+        <MobileFilters />
 
         <div class="team-page-content">
           <div class="sidebar">
@@ -91,7 +95,6 @@ const filters = reactive({
 </template>
 
 <style lang="scss">
-
 .team-page {
   padding-bottom: 120px;
 }

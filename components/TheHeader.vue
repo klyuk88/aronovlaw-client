@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
-const showMobMenu = useShowMobMenu()
+
+const showMobMenu = useShowMobMenu();
+
 const menu = ref([
   { title: "О нас", slug: "#" },
   { title: "Команда", slug: "/team" },
@@ -26,12 +28,10 @@ const menu = ref([
         </nav>
 
         <div class="lang-switcher">
-          <span>RU</span>
-          <img src="@/assets/img/chevron-down.svg" alt="" />
+          <TheLangSwitcher/>
         </div>
-        <div class="header-mob_menu"
-        @click="showMobMenu = !showMobMenu"
-        >
+
+        <div class="header-mob_menu" @click="showMobMenu = !showMobMenu">
           <div></div>
           <div></div>
         </div>
@@ -74,15 +74,20 @@ const menu = ref([
       }
     }
   }
+
+  .lang-switcher-arrow:hover {
+    path {
+      transition: fill 0.2s ease;
+      fill: var(--accent-color);
+    }
+  }
+
   .lang-switcher {
     cursor: pointer;
     margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    span {
-      font-size: 14px;
-    }
+    position: relative;
+    width: 20px;
+    height: 20px;
     @media screen and (max-width: 1100px) {
       display: none;
     }
