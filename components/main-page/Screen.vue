@@ -97,7 +97,7 @@ const news = ref([
               muted
               playsinline
               class="main-planet video"
-              src="~/assets/planet/planet-black.mp4"
+              src="~/assets/planet-black.mp4"
             >
             </video>
             
