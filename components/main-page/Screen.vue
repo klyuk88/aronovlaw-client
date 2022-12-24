@@ -6,6 +6,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+const runTimeConfig = useRuntimeConfig()
+
 const mainSlider = ref(null);
 
 const onSwiper = (swiper) => {
@@ -31,6 +33,7 @@ const news = ref([
       "назначен руководителем практики сложных судебных споров МКА “Аронов и Партнеры”",
   },
 ]);
+
 </script>
 <template>
   <div>
@@ -91,13 +94,14 @@ const news = ref([
 
           <div class="col-2">
             <!-- <img src="~/assets/planet/planet.gif" alt="" class="planet_gif"> -->
+            <!-- src="~/assets/planet-black.mp4" -->
             <video
               autoplay
               loop
               muted
               playsinline
               class="main-planet video"
-              src="~/assets/planet-black.mp4"
+              src="http://server.1096137-cd86361.tmweb.ru/uploads/planet_black_08688f8ee3.mp4"
             >
             </video>
             
