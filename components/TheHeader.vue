@@ -7,7 +7,7 @@ const menu = ref([
   { title: "О нас", slug: "#" },
   { title: "Команда", slug: "/team" },
   { title: "Экспертиза", slug: "/expertise" },
-  { title: "Офисы", slug: "#" },
+  { title: "Офисы", slug: "/offices" },
   { title: "Медиа", slug: "/media" },
   { title: "Блог", slug: "#" },
 ]);

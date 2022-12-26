@@ -95,6 +95,7 @@ const news = ref([
           <div class="col-2">
             <!-- <img src="~/assets/planet/planet.gif" alt="" class="planet_gif"> -->
             <!-- src="~/assets/planet-black.mp4" -->
+            <!-- src="http://server.1096137-cd86361.tmweb.ru/uploads/planet_black_08688f8ee3.mp4" -->
             <video
               autoplay
               loop
