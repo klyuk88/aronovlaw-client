@@ -28,34 +28,6 @@
         </NuxtLink>
       </div>
 
-      <div class="expertise-links">
-        <div class="expertise-links-item" v-for="(item, idx) in 2" :key="idx">
-          <NuxtLink to="#">
-            <h4>
-              Законотворческая деятельность
-              <svg
-                width="14"
-                height="10"
-                viewBox="0 0 14 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.75 10L7.525 8.79167L10.6312 5.83333H0V4.16667H10.6312L7.525 1.20833L8.75 0L14 5L8.75 10Z"
-                  fill="white"
-                />
-              </svg>
-            </h4>
-          </NuxtLink>
-          <p>
-            Lorem Ipsum - это текст-"рыба", часто используемый в печати и
-            вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на
-            латинице с начала XVI века. В то время некий безымянный печатник
-            создал большую коллекцию размеров и форм шрифтов, используя Lorem
-            Ipsum для распечатки образцов.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 </template>
