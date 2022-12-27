@@ -2,15 +2,6 @@
 import { ref } from "vue";
 
 const showMobMenu = useShowMobMenu();
-
-const menu = ref([
-  { title: "О нас", slug: "/about" },
-  { title: "Команда", slug: "/team" },
-  { title: "Экспертиза", slug: "/expertise" },
-  { title: "Офисы", slug: "/offices" },
-  { title: "Медиа", slug: "/media" },
-  { title: "Блог", slug: "/blog" },
-]);
 </script>
 <template>
   <header>
@@ -21,14 +12,59 @@ const menu = ref([
         /></NuxtLink>
         <nav>
           <ul class="menu">
-            <li v-for="(item, index) in menu" :key="index">
-              <NuxtLink :to="item.slug">{{ item.title }}</NuxtLink>
+            <li>
+              <NuxtLink to="/about">О нас</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/team">Команда</NuxtLink>
+            </li>
+            <li class="with_submenu_item">
+              <NuxtLink to="/expertise"> Экспертиза</NuxtLink>
+              <div class="submenu_wrap">
+                <div class="submenu">
+                  <div class="">
+                    <NuxtLink to="/expertise/practices/" class="submenu-parent_link"
+                      >Практики</NuxtLink
+                    >
+                    <ul class="submenu-practices">
+                      <li v-for="(item, index) in 14" :key="index">
+                        <NuxtLink to="/expertise/practices/slug"
+                          >Банкротство</NuxtLink
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <NuxtLink
+                      to="/expertise/legislative-activity"
+                      class="submenu-parent_link"
+                      >Законотворческая деятельность</NuxtLink
+                    >
+                  </div>
+                  <div>
+                    <NuxtLink
+                      to="/expertise/pro-bono"
+                      class="submenu-parent_link"
+                      >Pro bono</NuxtLink
+                    >
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <NuxtLink to="/offices">Офисы</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/media">Медиа</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/blog">Блог</NuxtLink>
             </li>
           </ul>
         </nav>
 
         <div class="lang-switcher">
-          <TheLangSwitcher/>
+          <TheLangSwitcher />
         </div>
 
         <div class="header-mob_menu" @click="showMobMenu = !showMobMenu">
@@ -41,6 +77,77 @@ const menu = ref([
 </template>
 
 <style lang="scss">
+header {
+  .container {
+    position: relative;
+  }
+}
+.header-content {
+  .menu {
+    li {
+      position: relative;
+      .submenu_wrap {
+        position: fixed;
+        display: none;
+        z-index: 99;
+        transform: translateY(99px) translateX(-50%);
+        padding-top: 60px;
+        left: 50%;
+        top: 0;
+        width: 1110px;
+      }
+      .submenu {
+        background: #fff;
+        padding: 60px;
+        display: grid;
+        grid-template-columns: 50% 1fr 1fr;
+        gap: 30px;
+
+        .submenu-practices {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 50px;
+          row-gap: 10px;
+          margin-top: 34px;
+          li a {
+            transition: color 0.3s ease;
+            color: #616161;
+          }
+          li a:hover {
+            transition: color 0.3s ease;
+            color: var(--accent-color);
+          }
+        }
+        .submenu-parent_link {
+          font-size: 16px;
+          font-weight: 500;
+          color: #212121;
+          transition: color 0.2s ease;
+        }
+        .submenu-parent_link:hover {
+          transition: color 0.2s ease;
+          color: var(--accent-color);
+        }
+      }
+    }
+    .with_submenu_item:hover {
+      .submenu_wrap {
+        display: block;
+      }
+    }
+    .with_submenu_item:hover:after {
+      content: "";
+      width: 1px;
+      height: 60px;
+      background: #fff;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(50%) translateY(25px);
+    }
+  }
+}
+
 .header-content {
   display: flex;
   align-items: center;
@@ -67,6 +174,7 @@ const menu = ref([
         color: #fff;
         text-decoration: none;
         transition: color 0.2s ease;
+        position: relative;
       }
       a:hover {
         color: var(--accent-color);
