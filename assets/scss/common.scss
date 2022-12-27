@@ -1,8 +1,20 @@
 :root {
     --dark-color: #212121;
     --accent-color: #038DFF;
+    --size-1: 60px;
+    --size-2: 120px;
+    --size-3: 20px;
 }
 
+.mt-1 {
+    margin-top: var(--size-1);
+}
+.mt-2 {
+    margin-top: var(--size-2);
+}
+.mt-3 {
+    margin-top: var(--size-3);
+}
 
 html,
 body,

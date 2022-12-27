@@ -4,7 +4,7 @@ import { ref } from "vue";
 const showMobMenu = useShowMobMenu();
 
 const menu = ref([
-  { title: "О нас", slug: "#" },
+  { title: "О нас", slug: "/about" },
   { title: "Команда", slug: "/team" },
   { title: "Экспертиза", slug: "/expertise" },
   { title: "Офисы", slug: "/offices" },
