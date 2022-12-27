@@ -88,13 +88,14 @@ header {
       position: relative;
       .submenu_wrap {
         position: fixed;
-        display: none;
         z-index: 99;
         transform: translateY(99px) translateX(-50%);
         padding-top: 60px;
         left: 50%;
         top: 0;
+        display: none;
         width: 1110px;
+
       }
       .submenu {
         background: #fff;
@@ -133,6 +134,7 @@ header {
     .with_submenu_item:hover {
       .submenu_wrap {
         display: block;
+
       }
     }
     .with_submenu_item:hover:after {
@@ -144,6 +146,7 @@ header {
       top: 0;
       left: 50%;
       transform: translateX(50%) translateY(25px);
+      
     }
   }
 }
