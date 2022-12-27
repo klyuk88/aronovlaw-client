@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="page-title">Практики</h1>
       <div class="expertise-row">
-        <NuxtLink to="#" v-for="(item, index) in 16" :key="index">
+        <NuxtLink to="/expertise/practices/slug" v-for="(item, index) in 16" :key="index">
           <div class="expertise_item">
             <img
               src="@/assets/img/expertise-icon.png"

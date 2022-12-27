@@ -9,7 +9,7 @@ const menu = ref([
   { title: "Экспертиза", slug: "/expertise" },
   { title: "Офисы", slug: "/offices" },
   { title: "Медиа", slug: "/media" },
-  { title: "Блог", slug: "#" },
+  { title: "Блог", slug: "/blog" },
 ]);
 </script>
 <template>

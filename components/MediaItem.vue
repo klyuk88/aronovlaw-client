@@ -18,7 +18,7 @@
         следствия при получении господдержки.
       </p>
     </div>
-    <NuxtLink to="#" class="media-item-link"
+    <NuxtLink to="/media/slug" class="media-item-link"
       >Читать далее
       <svg
         width="14"

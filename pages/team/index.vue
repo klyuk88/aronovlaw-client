@@ -69,24 +69,9 @@ const showFilters = ref(false)
           </div>
 
           <div class="team-page-items">
-            <NuxtLink to="#" v-for="(item, index) in 12" :key="index">
-              <div class="team-page-item">
-                <img
-                  src="@/assets/img/comands-img.jpg"
-                  alt=""
-                  class="team_item-image"
-                />
-                <img
-                  src="@/assets/img/team/item-2.jpg"
-                  alt=""
-                  class="team_item-hover_image"
-                />
-                <div class="team-page-item_names">
-                  <h3 class="team-page-item-title">Александр Аронов</h3>
-                  <p class="team-page-item-post">Управляющий партнер</p>
-                </div>
-              </div>
-            </NuxtLink>
+           <TeamItem
+           v-for="(item, index) in 16" :key="index"
+           />
           </div>
         </div>
         <PagePagination class="team-pagination" />
@@ -176,77 +161,11 @@ const showFilters = ref(false)
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  .team-page-item {
-    position: relative;
-    width: 100%;
-    height: 360px;
-    padding: 35px 30px;
-    flex-direction: column;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    &_names {
-      position: relative;
-      z-index: 1;
-    }
-    &-title {
-      font-size: 20px;
-      font-weight: 700;
-    }
-    &-post {
-      font-size: 13px;
-      font-weight: 300;
-      margin-top: 16px;
-    }
-    @media screen and (max-width: 1100px) {
-      height: 400px;
-    }
-    @media screen and (max-width: 567px) {
-      height: 490px;
-    }
-  }
-  .team-page-item:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      rgba(33, 33, 33, 0) 49.98%,
-      #212121 99.98%
-    );
-  }
-  @media screen and (max-width: 1100px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media screen and (max-width: 440px) {
-    grid-template-columns: 100%;
-  }
+
 }
 .team-pagination {
   margin-top: 60px;
   text-align: right;
 }
-.team_item-hover_image {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
 
-.team-page-item:hover {
-  .team_item-hover_image {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-  }
-}
 </style>
