@@ -72,6 +72,9 @@ const menu = ref([
         color: var(--accent-color);
         transition: color 0.2s ease;
       }
+      .router-link-active {
+        color: var(--accent-color);
+      }
     }
   }
 
