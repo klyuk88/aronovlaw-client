@@ -161,7 +161,9 @@ const showFilters = ref(false)
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 .team-pagination {
   margin-top: 60px;
