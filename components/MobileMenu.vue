@@ -24,7 +24,7 @@ const showMobMenu = useShowMobMenu();
             <nuxt-link to="/"> Главная </nuxt-link>
           </li>
           <li>
-            <nuxt-link to="#"> О нас </nuxt-link>
+            <nuxt-link to="/about"> О нас </nuxt-link>
           </li>
           <li>
             <nuxt-link to="/team">Команда</nuxt-link>
@@ -42,24 +42,24 @@ const showMobMenu = useShowMobMenu();
 
             <ul class="mob_menu-submenu_items" :class="{ show: submenuShow }">
               <li>
-                <nuxt-link to="#">Практики</nuxt-link>
+                <nuxt-link to="/expertise/practices">Практики</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="#">Законотворческая деятельность</nuxt-link>
+                <nuxt-link to="/expertise/legislative-activity">Законотворческая деятельность</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="#">Pro bono</nuxt-link>
+                <nuxt-link to="/expertise/pro-bono">Pro bono</nuxt-link>
               </li>
             </ul>
           </li>
           <li>
-            <nuxt-link to="#">Офисы</nuxt-link>
+            <nuxt-link to="/offices">Офисы</nuxt-link>
           </li>
           <li>
             <nuxt-link to="/media">Медиа</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="#">Блог</nuxt-link>
+            <nuxt-link to="/blog">Блог</nuxt-link>
           </li>
         </ul>
       </div>

@@ -1,3 +1,10 @@
+<script setup>
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation, Pagination } from "swiper";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css";
+</script>
 <template>
   <section class="practice_single page-top page-bottom">
     <div class="container">
@@ -82,9 +89,28 @@
       <div class="mt-1">
         <h2 class="page-title">Команда</h2>
         <div class="practice_single-team mt-1">
-          <TeamItem
-          v-for="(item, index) in 4" :key="index"
-          />
+          <Swiper
+            :modules="[Navigation, Pagination]"
+            :slides-per-view="4"
+            :space-between="30"
+            navigation
+            :pagination="{ clickable: true }"
+            :breakpoints="{
+              320: {
+                slidesPerView: 1
+              },
+              768: {
+                slidesPerView: 2
+              },
+              1110: {
+                slidesPerView: 4
+              },
+            }"
+          >
+            <SwiperSlide v-for="(item, index) in 6" :key="index">
+              <TeamItem />
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
     </div>
@@ -93,9 +119,16 @@
 
 <style lang="scss">
 .practice_single-team {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  overflow: hidden;
+  .swiper-button-next, .swiper-button-prev {
+    color: #fff;
+  }
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 25px;
+  }
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: #fff;
+  }
 }
 .practice_single-content {
   max-width: 730px;
@@ -123,6 +156,8 @@
   align-items: center;
   gap: 16px;
   opacity: 0.5;
+  font-size: 14px;
+  font-weight: 300;
 }
 .practice_single-nav {
   display: flex;
@@ -133,5 +168,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 55px;
+  }
 }
 </style>

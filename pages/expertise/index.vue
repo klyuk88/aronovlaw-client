@@ -116,6 +116,10 @@
     font-weight: 400;
     margin-top: 60px;
   }
+  @media screen and (max-width: 1100px) {
+    padding: 90px 30px 150px 30px;
+    min-height: auto;
+  }
 }
 
 .expertise_index-row {
@@ -124,6 +128,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 100%;
+  }
 }
 .expertise_index-subtitle {
   margin-top: 60px;

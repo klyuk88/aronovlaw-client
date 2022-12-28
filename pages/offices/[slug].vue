@@ -21,6 +21,9 @@
 <style lang="scss">
 .single_office {
   margin-bottom: 150px;
+  @media screen and (max-width: 1100px) {
+    padding-top: 60px;
+  }
 }
 .single_office-content {
   margin-top: 60px;
@@ -28,12 +31,20 @@
 .single_offce-cover {
   width: 100%;
   height: auto;
+  @media screen and (max-width: 1100px) {
+    margin-top: 60px;
+  }
 }
 .single_office-content {
+  color: #fff;
   h2 {
     font-size: 24px;
     font-weight: 700;
     position: relative;
+    @media screen and (max-width: 1100px) {
+      font-size: 18px;
+      font-weight: 700;
+    }
   }
   h2:before {
     content: "";
@@ -44,6 +55,11 @@
     display: block;
     background: var(--accent-color);
 
+  }
+  p, li {
+    @media screen and (max-width: 1100px) {
+      font-size: 14px;
+    }
   }
 }
 </style>
