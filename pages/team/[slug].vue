@@ -28,7 +28,7 @@
           </div>
 
           <div class="team_single-header_item contacts">
-            <a href="#" class="team_single-header_link">v-сard</a>
+            <a href="/vcard.vcf" class="team_single-header_link" download="">v-сard</a>
             <a href="mailto:re@aronovlaw.ru" class="team_single-header_link"
               >re@aronovlaw.ru</a
             >
