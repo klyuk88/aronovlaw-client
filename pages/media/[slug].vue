@@ -2,7 +2,7 @@
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 const { error, data: singleMedia } = await useFetch(
-  () => `/api/medias/${route.query.id}?populate=*`,
+  () => `/api/medias/${route.query.id}?populate[team][populate]=*&populate[cover]=*`,
   {
     baseURL: runtimeConfig.public.api,
   }
@@ -101,12 +101,14 @@ const content = singleMedia.value.data.attributes.content.replace(
           <div class="single_page-content" v-html="content"></div>
 
           <div class="single_page-author"
+          v-if="singleMedia.data.attributes.team.data"
           >
             <div class="author_photo">
-              <img src="@/assets/img/dev_images/author.png" alt="" />
+              <img :src="$config.public.api + singleMedia.data.attributes.team.data.attributes.avatar.data.attributes.url" alt="author-photo" />
             </div>
             <p class="author_name">
-              Адвокат МКА «Аронов и партнеры»<br />Иван Александров
+              {{singleMedia.data.attributes.team.data.attributes.post}} МКА «Аронов и партнеры»<br />
+              {{singleMedia.data.attributes.team.data.attributes.name}}
             </p>
           </div>
         </div>
