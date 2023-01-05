@@ -1,11 +1,24 @@
+<script setup>
+const runtimeConfig = useRuntimeConfig();
+const { data: mediaItems } = await useFetch(
+  () => `/api/medias?pagination[pageSize]=3&populate=*`,
+  {
+    baseURL: runtimeConfig.public.api,
+  }
+);
+
+</script>
 <template>
-  <section class="media section-top">
+  <section class="media section-top"
+  v-if="mediaItems.data.length > 0"
+  >
     <div class="container">
       <h2 class="section-title">Медиа</h2>
       <div class="media-content">
-        <MediaItem/>
-        <MediaItem/>
-        <MediaItem/>
+        <MediaItem
+        v-for="(item, index) in mediaItems.data" :key="item.id"
+        :mediaItem="item"
+        />
       </div>
     </div>
   </section>
@@ -21,5 +34,4 @@
     grid-template-columns: 100%;
   }
 }
-
 </style>

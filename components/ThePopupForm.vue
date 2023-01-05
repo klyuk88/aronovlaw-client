@@ -69,6 +69,7 @@ const showPopup = useShowPopup()
       border-bottom: 1px solid rgba(33, 33, 33, 0.5);
       width: 100%;
       margin-bottom: 35px;
+      font-family: 'Inter';
       @media screen and (max-width: 576px) {
         margin-bottom: 25px;
       }
@@ -78,6 +79,7 @@ const showPopup = useShowPopup()
       font-size: 16px;
       font-weight: 300;
       color: var(--dark-color);
+      font-family: 'Inter';
     }
     input:focus,
     textarea:focus {

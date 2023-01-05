@@ -1,5 +1,6 @@
 <script setup>
 const props = defineProps(["mediaItem"]);
+
 const date = new Date(props.mediaItem.attributes.publishedAt);
 const pubDate = date.toLocaleString("ru-RU", {
   day: "2-digit",

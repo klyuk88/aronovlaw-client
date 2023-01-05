@@ -67,6 +67,10 @@ a {
     box-sizing: border-box;
 }
 
+input, textarea {
+    font-family: 'Inter', sans-serif;
+}
+
 .container {
     max-width: 1110px;
     box-sizing: content-box;

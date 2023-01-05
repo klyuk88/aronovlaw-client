@@ -1,21 +1,43 @@
+<script setup>
+const route = useRoute()
+const runtimeConfig = useRuntimeConfig()
+
+const {error, data: singleTeam} = await useFetch(
+  () => `/api/teams/${route.query.id}?populate=*`,
+  {
+    baseURL: runtimeConfig.public.api
+  }
+)
+
+const about = singleTeam.value.data.attributes.about.replace(/\/uploads/,`${runtimeConfig.public.api}/uploads`)
+
+const {data: singleTeamMedia} = await useFetch(
+  () => `/api/medias?filters[team][id][$eq]=${route.query.id}&populate=*`,
+  {
+    baseURL: runtimeConfig.public.api
+  }
+)
+
+</script>
 <template>
   <section class="team_single page-top page-bottom">
     <div class="container">
       <div class="team_single-header">
 
         <div>
-          <h1 class="team_single-name">Розенблат Евгений</h1>
-          <h2 class="team_single-post">Адвокат</h2>
+          <h1 class="team_single-name">{{singleTeam.data.attributes.name}}</h1>
+          <h2 class="team_single-post">{{singleTeam.data.attributes.post}}</h2>
 
           <img src="@/assets/img/dev_images/single-team-image.jpg" alt="" class="team_single-mob_thumb">
 
-          <div class="team_single-header_item">
+          <div class="team_single-header_item"
+          v-if="singleTeam.data.attributes.practices.data"
+          >
             <h3 class="team_single-subtitle">Практика</h3>
             <ul class="team_single-list">
-              <li>Практика сложных судебных споров</li>
-              <li>Cопровождение сложных судебных споров</li>
-              <li>Договорное право</li>
-              <li>Корпоративное право и IT-право</li>
+              <li 
+              v-for="(item, index) in singleTeam.data.attributes.practices.data" :key="index"
+              >{{item.attributes.title}}</li>
             </ul>
           </div>
 
@@ -28,16 +50,18 @@
           </div>
 
           <div class="team_single-header_item contacts">
-            <a href="/vcard.vcf" class="team_single-header_link" download="">v-сard</a>
-            <a href="mailto:re@aronovlaw.ru" class="team_single-header_link"
-              >re@aronovlaw.ru</a
+            <a :href="$config.public.api + singleTeam.data.attributes.vCard.data.attributes.url" class="team_single-header_link" download v-if="singleTeam.data.attributes.vCard.data">v-сard</a>
+
+            <a :href="`mailto:${singleTeam.data.attributes.email}`" class="team_single-header_link"
+              >{{singleTeam.data.attributes.email}}</a
             >
           </div>
 
-          <div class="team_single-header_item">
+          <div class="team_single-header_item"
+          v-if="singleTeam.data.attributes.quote"
+          >
             <p class="team_single-header_quote">
-              «Хороший боец не тот, кто всегда побеждает, а тот, кто не боится
-              испытать себя»
+              {{singleTeam.data.attributes.quote}}
             </p>
           </div>
         </div>
@@ -45,8 +69,8 @@
         <div class="team_single-thumb_wrap">
           <div class="team_single-thumb">
             <img
-              src="@/assets/img/dev_images/single-team-image.jpg"
-              alt=""
+              :src="$config.public.api + singleTeam.data.attributes.avatar.data.attributes.url"
+              alt="team-photo"
               class="cover-image"
             />
 
@@ -66,31 +90,7 @@
 
       </div>
 
-      <div class="team_single-about">
-        <p>
-          Евгений возглавляет практику сложных судебных споров, специализируется
-          в области корпоративного права и права интеллектуальной собственности.
-          До присоединения к команде работал в ведущих юридических фирмах России
-          (ЮСТ, МКА, Князев и партнеры), а также руководил правовым
-          подразделением в группе компаний Московского аэропорта «Домодедово».
-          <br /><br />
-          Стаж работы Евгения на российском рынке правовых услуг – более 12 лет.
-          Неоднократно выступал в качестве адвоката-эксперта (Независимая
-          газета, Коммерсант, Право.ру, Адвокатская газета, ЭЖ-Юрист, Известия,
-          Российская газета, РИА-новости, RT, Аргументы и факты, 360, Главбух,
-          Regnum, каналы: НТВ, ТВЦ, Россия, РЕН-ТВ, МИР; Радио России).
-          <br /><br />
-          Помимо успешной работы на рынке юридических услуг, опыт Евгения также
-          включает в себя преподавательскую деятельность: - судья направления
-          «Уголовное право» на «Kutafin Legal Cup 2020» (МГЮА им. О.Е.
-          Кутафина); - лектор в МГЮА им. О.Е. Кутафина и Высшей школе
-          юриспруденции и администрирования НИУ ВШЭ; - лектор LEGAL IT CLUB по
-          IT-праву.
-          <br /><br />
-          Евгений возглавляет команду юристов, представляющих клиентам весь
-          спектр услуг, связанных с разрешением споров любой сложности.
-        </p>
-      </div>
+      <div class="team_single-about" v-html="about" />
 
       <div class="team_single-cases">
         <h2 class="page-title">Успешные кейсы</h2>
@@ -164,10 +164,13 @@
         </div>
       </div>
 
-      <div class="team_single-media">
+      <div class="team_single-media"
+
+      v-if="singleTeamMedia.data.length > 0"
+      >
         <div class="team_single-media-header">
           <h2 class="page-title">Публикации</h2>
-          <NuxtLink to=""
+          <NuxtLink to="/media"
             >Смотреть еще
             <svg
               width="14"
@@ -185,9 +188,11 @@
         </div>
 
         <div class="team_single-media-row">
-          <MediaItem />
-          <MediaItem />
-          <MediaItem />
+          <MediaItem 
+          v-for="(item, index) in singleTeamMedia.data" :key="index"
+          :mediaItem="item"
+          />
+
         </div>
       </div>
     </div>
@@ -318,6 +323,9 @@
 
 .team_single-about {
   margin-top: 60px;
+  * {
+    color: #fff!important;
+  }
 }
 
 .team_single-cases {
@@ -370,4 +378,6 @@
     transition: fill 0.2s ease;
   }
 }
+
+
 </style>
