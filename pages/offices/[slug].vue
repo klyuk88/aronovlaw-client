@@ -1,21 +1,27 @@
+<script setup>
+const runtimeConfig = useRuntimeConfig()
+const route = useRoute()
+const {data: singleOffice} = await useFetch(
+  `/api/offices?filters[slug][$eq]=${route.params.slug}&populate=*`,
+  {
+    baseURL: runtimeConfig.public.api
+  }
+)
+const content = useReplaceUploads(singleOffice.value.data[0].attributes.content)
+
+</script>
 <template>
   <section class="single_office section-top">
     <div class="container">
-      <h1 class="page-title single_office-title">Россия</h1>
+      <h1 class="page-title single_office-title">{{singleOffice.data[0].attributes.title}}</h1>
     </div>
     <img
-      src="~/assets/img/office-cover.svg"
-      alt=""
+      :src="$config.public.api + singleOffice.data[0].attributes.Cover.data.attributes.url"
+      alt="office-cover"
       class="single_offce-cover"
     />
 
-    <div class="container single_office-content">
-      <h2>
-        Сопровождение при внесении взноса за второй год обслуживания, обновлении
-        секретаря и оформлении Декларации о ежегодной проверке
-      </h2>
-      
-    </div>
+    <div class="container single_office-content" v-html="content" />
   </section>
 </template>
 <style lang="scss">
@@ -36,6 +42,9 @@
   }
 }
 .single_office-content {
+  * {
+    color: #fff!important;
+  }
   color: #fff;
   h2 {
     font-size: 24px;

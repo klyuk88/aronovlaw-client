@@ -640,7 +640,7 @@ const navToOffice = async (country) => {
         </h2>
         <ul class="offices-list">
           <li>
-            <nuxt-link to="/offices/slug"> Россия </nuxt-link>
+            <nuxt-link to="/offices/russia"> Россия </nuxt-link>
           </li>
           <li><nuxt-link to="/offices/kazakhstan"> Казахстан </nuxt-link></li>
           <li><nuxt-link to="/offices/china"> Китай </nuxt-link></li>
