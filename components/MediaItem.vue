@@ -1,24 +1,48 @@
+<script setup>
+const props = defineProps(["mediaItem"]);
+const date = new Date(props.mediaItem.attributes.publishedAt);
+const pubDate = date.toLocaleString("ru-RU", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+});
+</script>
 <template>
-<!-- no-image -->
-  <div class="media-item">
+  <!-- no-image -->
+  <div
+    class="media-item"
+    :class="{
+      'no-image': props.mediaItem.attributes.thumbnail.data ? false : true,
+    }"
+  >
     <img
-      src="@/assets/img/media-thumb.jpg"
+      v-if="props.mediaItem.attributes.thumbnail.data"
+      :src="
+        $config.public.api +
+        props.mediaItem.attributes.thumbnail.data.attributes.url
+      "
       alt="media-thumbnail"
       class="media-item-thumb"
     />
     <div class="media-item-header">
-      <p>Семейное / наследственное право</p>
-    </div>
-    <div class="media-item-body">
-      <h3 class="media-item-date">11.11.2022</h3>
-      <h3 class="media-item-title">Прошла конференция Право.Ру</h3>
-      <p class="media-item-content">
-        Юристы и адвокаты обсуждали актуальные риски для директоров и
-        бенефициаров. А также объяснили, как избежать претензий со стороны
-        следствия при получении господдержки.
+      <p v-if="props.mediaItem.attributes.practice.data">
+        {{ props.mediaItem.attributes.practice.data.attributes.title }}
       </p>
     </div>
-    <NuxtLink to="/media/slug" class="media-item-link"
+    <div class="media-item-body">
+      <client-only>
+        <h3 class="media-item-date">
+          {{ pubDate }}
+        </h3>
+      </client-only>
+      <h3 class="media-item-title">{{ props.mediaItem.attributes.title }}</h3>
+      <p class="media-item-content">
+        {{ props.mediaItem.attributes.shortAbout }}
+      </p>
+    </div>
+    <NuxtLink
+      :to="`/media/${props.mediaItem.attributes.slug}?id=${props.mediaItem.id}`"
+      class="media-item-link"
       >Читать далее
       <svg
         width="14"

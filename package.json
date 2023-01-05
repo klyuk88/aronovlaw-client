@@ -13,6 +13,7 @@
     "sass-loader": "^13.2.0"
   },
   "dependencies": {
+    "qs": "^6.11.0",
     "swiper": "^8.4.5",
     "vue-select": "^4.0.0-beta.6"
   }

@@ -1,15 +1,19 @@
+<script setup>
+const props = defineProps(['teamItem'])
+</script>
 <template>
   <NuxtLink to="/team/slug">
     <div class="team-page-item">
-      <img src="@/assets/img/comands-img.jpg" alt="" class="team_item-image" />
+      <img :src="$config.public.api + props.teamItem.attributes.avatar.data.attributes.url" alt="" class="team_item-image" />
       <img
-        src="@/assets/img/team/item-2.jpg"
+        v-if="props.teamItem.attributes.hoverImage"
+        :src="$config.public.api + props.teamItem.attributes.hoverImage.data.attributes.url"
         alt=""
         class="team_item-hover_image"
       />
       <div class="team-page-item_names">
-        <h3 class="team-page-item-title">Александр Аронов</h3>
-        <p class="team-page-item-post">Управляющий партнер</p>
+        <h3 class="team-page-item-title">{{props.teamItem.attributes.name}}</h3>
+        <p class="team-page-item-post">{{props.teamItem.attributes.post}}</p>
       </div>
     </div>
   </NuxtLink>

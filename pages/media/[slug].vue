@@ -1,4 +1,25 @@
 <script setup>
+const runtimeConfig = useRuntimeConfig();
+const route = useRoute();
+const { error, data: singleMedia } = await useFetch(
+  () => `/api/medias/${route.query.id}?populate=*`,
+  {
+    baseURL: runtimeConfig.public.api,
+  }
+);
+const date = new Date(singleMedia.value.data.attributes.publishedAt);
+
+const pubDate = date.toLocaleString("ru-RU", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+
+const content = singleMedia.value.data.attributes.content.replace(
+  /\/uploads/,
+  `${runtimeConfig.public.api}/uploads`
+);
+
 </script>
 <template>
   <section class="single_page page-top">
@@ -15,6 +36,7 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               class="single_page-nav_icon"
+              @click="navigateTo('/media')"
             >
               <path
                 d="M0.5 0.5H5.5V5.42589H0.5V0.5ZM10.5 0.5H15.5V5.42589H10.5V0.5ZM20.5 0.5H25.5V5.42589H20.5V0.5ZM0.5 10.6334H5.5V15.5593H0.5V10.6334ZM0.5 20.5741H5.5V25.5H0.5V20.5741ZM10.5 20.5741H15.5V25.5H10.5V20.5741ZM20.5 20.5741H25.5V25.5H20.5V20.5741ZM10.5 10.6334H15.5V15.5593H10.5V10.6334ZM20.5 10.6334H25.5V15.5593H20.5V10.6334Z"
@@ -61,45 +83,30 @@
         </div>
         <div>
           <img
-            src="@/assets/img/single-news-img.jpg"
+            v-if="singleMedia.data.attributes.cover.data"
+            :src="
+              $config.public.api +
+              singleMedia.data.attributes.cover.data.attributes.url
+            "
             alt="image"
             class="single_page-cover"
           />
-          <span class="single_page-date">11 ноября 2022</span>
-          <div class="single_page-content">
-            <h1>Юристы оценили новые правила судебно-медицинской экспертизы</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium, deleniti, temporibus ullam impedit reiciendis
-              suscipit natus, eligendi dolorem officia nulla perspiciatis iusto
-              velit repudiandae corrupti accusantium dolor veniam ipsa! Quisquam
-              sint doloribus dicta ducimus facere reiciendis aperiam, hic alias,
-              sunt consequatur accusantium nisi inventore natus. Nobis sequi
-              earum eveniet eum.
-            </p>
-            <br />
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Necessitatibus velit ab neque laborum rerum labore animi
-              consectetur maxime excepturi voluptatibus. Voluptas magni numquam
-              voluptates sequi iusto impedit nesciunt! Aliquam qui corporis cum
-              maxime quae quidem odio hic a excepturi voluptatem? Repellat
-              pariatur magni distinctio totam. Fuga, minus error. Assumenda,
-              suscipit ab ullam nobis porro aspernatur eaque odit id modi beatae
-              eum asperiores quisquam! Dolor, maiores ut eveniet reprehenderit
-              exercitationem earum velit ipsam animi necessitatibus accusantium,
-              labore officiis eos aliquam aspernatur! Sequi rem vero quod minus
-              ex! Enim qui laboriosam dolorum sint consequuntur incidunt
-              assumenda neque eaque, provident est a illum.
-            </p>
-          </div>
+          <client-only
+            ><span class="single_page-date">{{ pubDate }}</span></client-only
+          >
+          <h1 class="single_media-title">
+            {{ singleMedia.data.attributes.title }}
+          </h1>
 
-          <div class="single_page-author">
+          <div class="single_page-content" v-html="content"></div>
+
+          <div class="single_page-author"
+          >
             <div class="author_photo">
-              <img src="@/assets/img/dev_images/author.png" alt="">
+              <img src="@/assets/img/dev_images/author.png" alt="" />
             </div>
             <p class="author_name">
-              Адвокат МКА «Аронов и партнеры»<br>Иван Александров
+              Адвокат МКА «Аронов и партнеры»<br />Иван Александров
             </p>
           </div>
         </div>
@@ -161,19 +168,11 @@
 }
 
 .single_page-content {
-  h1 {
-    padding-bottom: 20px;
-    font-size: 28px;
-    font-weight: 700;
-    @media screen and (max-width: 1100px) {
-      font-size: 24px;
-      font-weight: 600;
-    }
+  * {
+    color: #fff !important;
   }
-  p {
-    color: #fff;
-    line-height: 1.5;
-    font-size: 16px;
+  a {
+    text-decoration: underline;
   }
 }
 
@@ -193,13 +192,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-
     }
     @media screen and (max-width: 1100px) {
       width: 80px;
       height: 80px;
     }
-  
   }
   .author_name {
     font-size: 16px;
@@ -207,6 +204,15 @@
   }
   @media screen and (max-width: 1100px) {
     gap: 15px;
+  }
+}
+.single_media-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  @media screen and (max-width: 1100px) {
+    font-size: 24px;
+    font-weight: 600;
   }
 }
 </style>
