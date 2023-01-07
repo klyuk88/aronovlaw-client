@@ -1,7 +1,12 @@
 <script setup>
 import { ref } from "vue";
-
+const runtimeConfig = useRuntimeConfig()
 const showMobMenu = useShowMobMenu();
+
+const {data: practices} = await useFetch(
+  `/api/practices`,
+  {baseURL: runtimeConfig.public.api}
+)
 </script>
 <template>
   <header>
@@ -26,10 +31,14 @@ const showMobMenu = useShowMobMenu();
                     <NuxtLink to="/expertise/practices/" class="submenu-parent_link"
                       >Практики</NuxtLink
                     >
-                    <ul class="submenu-practices">
-                      <li v-for="(item, index) in 14" :key="index">
-                        <NuxtLink to="/expertise/practices/slug"
-                          >Банкротство</NuxtLink
+                    <ul class="submenu-practices"
+                    v-if="practices.data.length > 0"
+                    >
+                      <li v-for="(item, index) in practices.data" :key="index">
+                        <NuxtLink :to="`/expertise/practices/${item.attributes.slug}`"
+                          >
+                          {{item.attributes.title}}
+                          </NuxtLink
                         >
                       </li>
                     </ul>

@@ -99,7 +99,7 @@ const news = ref([
               muted
               playsinline
               class="main-planet video"
-              src="http://server3.1096137-cd86361.tmweb.ru/uploads/planet_black_aa7c57e8f9.mp4"
+              :src="`${$config.public.api}/uploads/planet_black_aa7c57e8f9.mp4`"
             >
             </video>
             

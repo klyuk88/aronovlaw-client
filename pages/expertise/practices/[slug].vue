@@ -108,7 +108,7 @@ import "swiper/css";
             }"
           >
             <SwiperSlide v-for="(item, index) in 6" :key="index">
-              <TeamItem />
+              <!-- <TeamItem /> -->
             </SwiperSlide>
           </Swiper>
         </div>
