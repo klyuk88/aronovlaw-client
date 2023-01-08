@@ -17,9 +17,13 @@ const {data: singleTeamMedia} = await useFetch(
     baseURL: runtimeConfig.public.api
   }
 )
-
+const videoModal = useShowVideoModal()
+const showVideoModal = () => {
+  videoModal.value = true
+}
 </script>
 <template>
+  <VideoModal v-if="videoModal"/>
   <section class="team_single page-top page-bottom">
     <div class="container">
       <div class="team_single-header">
@@ -28,7 +32,11 @@ const {data: singleTeamMedia} = await useFetch(
           <h1 class="team_single-name">{{singleTeam.data.attributes.name}}</h1>
           <h2 class="team_single-post">{{singleTeam.data.attributes.post}}</h2>
 
-          <img src="@/assets/img/dev_images/single-team-image.jpg" alt="" class="team_single-mob_thumb">
+          <div class="team_single-mob_thumb">
+            <img src="@/assets/img/dev_images/single-team-image.jpg" alt="" class="avatar">
+            <img src="@/assets/img/btn-video.svg" alt="play-video" class="play_video_button" @click="showVideoModal()">
+          </div>
+          
 
           <div class="team_single-header_item"
           v-if="singleTeam.data.attributes.practices.data"
@@ -74,17 +82,7 @@ const {data: singleTeamMedia} = await useFetch(
               class="cover-image"
             />
 
-            <svg
-              width="120"
-              height="60"
-              viewBox="0 0 120 60"
-              fill="none"
-              id="btn_video"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="120" height="60" fill="#038DFF" />
-              <path d="M70 30L55 38.6603L55 21.3397L70 30Z" fill="white" />
-            </svg>
+           <img src="@/assets/img/btn-video.svg" alt="" id="btn_video" @click="showVideoModal()">
           </div>
         </div>
 
@@ -216,8 +214,24 @@ const {data: singleTeamMedia} = await useFetch(
 .team_single-mob_thumb {
   display: none;
   width: 100%;
-  height: auto;
   margin-bottom: 60px;
+  position: relative;
+  padding-top: 100%;
+  box-sizing: content-box;
+  .avatar {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    object-fit: cover;
+  }
+  .play_video_button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 60px;
+  }
   @media screen and (max-width: 1100px) {
     display: block;
   }
