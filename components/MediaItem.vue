@@ -42,7 +42,7 @@ const pubDate = date.toLocaleString("ru-RU", {
       </p>
     </div>
     <NuxtLink
-      :to="`/media/${props.mediaItem.attributes.slug}?id=${props.mediaItem.id}`"
+      :to="`/media/${props.mediaItem.attributes.slug}`"
       class="media-item-link"
       >Читать далее
       <svg

@@ -1,13 +1,16 @@
 <script setup>
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
-const { error, data: singleMedia } = await useFetch(
-  () => `/api/medias/${route.query.id}?populate[team][populate]=*&populate[cover]=*`,
+const singleMedia = ref(null)
+const { error, data: singleMediaData } = await useFetch(
+  () => `/api/medias?filters[slug][$eq]=${route.params.slug}&populate[team][populate]=*&populate[cover]=*`,
   {
     baseURL: runtimeConfig.public.api,
   }
 );
-const date = new Date(singleMedia.value.data.attributes.publishedAt);
+singleMedia.value = singleMediaData.value.data[0].attributes
+
+const date = new Date(singleMedia.value.publishedAt);
 
 const pubDate = date.toLocaleString("ru-RU", {
   day: "2-digit",
@@ -15,10 +18,7 @@ const pubDate = date.toLocaleString("ru-RU", {
   year: "numeric",
 });
 
-const content = singleMedia.value.data.attributes.content.replace(
-  /\/uploads/,
-  `${runtimeConfig.public.api}/uploads`
-);
+const content = useReplaceUploads(singleMedia.value.content)
 
 </script>
 <template>
@@ -83,10 +83,10 @@ const content = singleMedia.value.data.attributes.content.replace(
         </div>
         <div>
           <img
-            v-if="singleMedia.data.attributes.cover.data"
+            v-if="singleMedia.cover.data"
             :src="
               $config.public.api +
-              singleMedia.data.attributes.cover.data.attributes.url
+              singleMedia.cover.data.attributes.url
             "
             alt="image"
             class="single_page-cover"
@@ -95,20 +95,20 @@ const content = singleMedia.value.data.attributes.content.replace(
             ><span class="single_page-date">{{ pubDate }}</span></client-only
           >
           <h1 class="single_media-title">
-            {{ singleMedia.data.attributes.title }}
+            {{ singleMedia.title }}
           </h1>
 
           <div class="single_page-content" v-html="content"></div>
 
           <div class="single_page-author"
-          v-if="singleMedia.data.attributes.team.data"
+          v-if="singleMedia.team.data"
           >
             <div class="author_photo">
-              <img :src="$config.public.api + singleMedia.data.attributes.team.data.attributes.avatar.data.attributes.url" alt="author-photo" />
+              <img :src="$config.public.api + singleMedia.team.data.attributes.avatar.data.attributes.url" alt="author-photo" />
             </div>
             <p class="author_name">
-              {{singleMedia.data.attributes.team.data.attributes.post}} МКА «Аронов и партнеры»<br />
-              {{singleMedia.data.attributes.team.data.attributes.name}}
+              {{singleMedia.team.data.attributes.post}} МКА «Аронов и партнеры»<br />
+              {{singleMedia.team.data.attributes.name}}
             </p>
           </div>
         </div>
