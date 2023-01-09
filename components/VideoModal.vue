@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+const props = defineProps(['iframe'])
 const video = ref(null)
 const showModal = useShowVideoModal()
 
@@ -9,8 +10,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="video_modal" @click.self="showModal = false">
-     <div class="video_pleer">
-      <iframe ref="video" width="560" height="315" src="https://www.youtube.com/embed/slb-gnG8Jhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+     <div class="video_pleer" v-html="props.iframe">
      </div>
   </div>
 </template>

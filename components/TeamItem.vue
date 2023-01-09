@@ -2,7 +2,7 @@
 const props = defineProps(['teamItem'])
 </script>
 <template>
-  <NuxtLink :to="`/team/${props.teamItem.attributes.slug}?id=${props.teamItem.id}`">
+  <NuxtLink :to="`/team/${props.teamItem.attributes.slug}`">
     <div class="team-page-item">
       <img :src="$config.public.api + props.teamItem.attributes.avatar.data.attributes.url" alt="" class="team_item-image" />
       <img

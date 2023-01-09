@@ -1,18 +1,21 @@
 <script setup>
+import { ref } from 'vue'
 const route = useRoute()
 const runtimeConfig = useRuntimeConfig()
 
-const {error, data: singleTeam} = await useFetch(
-  () => `/api/teams/${route.query.id}?populate=*`,
+const singleTeam = ref(null)
+const {error, data: singleTeamData} = await useFetch(
+  () => `/api/teams?filters[slug][$eq]=${route.params.slug}&populate=*`,
   {
     baseURL: runtimeConfig.public.api
   }
 )
+singleTeam.value = singleTeamData.value.data[0].attributes
 
-const about = singleTeam.value.data.attributes.about.replace(/\/uploads/,`${runtimeConfig.public.api}/uploads`)
+const about = useReplaceUploads(singleTeam.value.about)
 
 const {data: singleTeamMedia} = await useFetch(
-  () => `/api/medias?filters[team][id][$eq]=${route.query.id}&populate=*`,
+  () => `/api/medias?filters[team][slug][$eq]=${route.params.slug}&populate=*`,
   {
     baseURL: runtimeConfig.public.api
   }
@@ -23,28 +26,28 @@ const showVideoModal = () => {
 }
 </script>
 <template>
-  <VideoModal v-if="videoModal"/>
+  <VideoModal v-if="videoModal" :iframe="singleTeam.youtubeVideo"/>
   <section class="team_single page-top page-bottom">
     <div class="container">
       <div class="team_single-header">
 
         <div>
-          <h1 class="team_single-name">{{singleTeam.data.attributes.name}}</h1>
-          <h2 class="team_single-post">{{singleTeam.data.attributes.post}}</h2>
+          <h1 class="team_single-name">{{singleTeam.name}}</h1>
+          <h2 class="team_single-post">{{singleTeam.post}}</h2>
 
           <div class="team_single-mob_thumb">
             <img src="@/assets/img/dev_images/single-team-image.jpg" alt="" class="avatar">
-            <img src="@/assets/img/btn-video.svg" alt="play-video" class="play_video_button" @click="showVideoModal()">
+            <img src="@/assets/img/btn-video.svg" alt="play-video" class="play_video_button" @click="showVideoModal()" v-if="singleTeam.youtubeVideo" >
           </div>
           
 
           <div class="team_single-header_item"
-          v-if="singleTeam.data.attributes.practices.data"
+          v-if="singleTeam.practices.data"
           >
             <h3 class="team_single-subtitle">Практика</h3>
             <ul class="team_single-list">
               <li 
-              v-for="(item, index) in singleTeam.data.attributes.practices.data" :key="index"
+              v-for="(item, index) in singleTeam.practices.data" :key="index"
               >{{item.attributes.title}}</li>
             </ul>
           </div>
@@ -58,18 +61,18 @@ const showVideoModal = () => {
           </div>
 
           <div class="team_single-header_item contacts">
-            <a :href="$config.public.api + singleTeam.data.attributes.vCard.data.attributes.url" class="team_single-header_link" download v-if="singleTeam.data.attributes.vCard.data">v-сard</a>
+            <a :href="$config.public.api + singleTeam.vCard.data.attributes.url" class="team_single-header_link" download v-if="singleTeam.vCard.data">v-сard</a>
 
-            <a :href="`mailto:${singleTeam.data.attributes.email}`" class="team_single-header_link"
-              >{{singleTeam.data.attributes.email}}</a
+            <a :href="`mailto:${singleTeam.email}`" class="team_single-header_link"
+              >{{singleTeam.email}}</a
             >
           </div>
 
           <div class="team_single-header_item"
-          v-if="singleTeam.data.attributes.quote"
+          v-if="singleTeam.quote"
           >
             <p class="team_single-header_quote">
-              {{singleTeam.data.attributes.quote}}
+              {{singleTeam.quote}}
             </p>
           </div>
         </div>
@@ -77,12 +80,12 @@ const showVideoModal = () => {
         <div class="team_single-thumb_wrap">
           <div class="team_single-thumb">
             <img
-              :src="$config.public.api + singleTeam.data.attributes.avatar.data.attributes.url"
+              :src="$config.public.api + singleTeam.avatar.data.attributes.url"
               alt="team-photo"
               class="cover-image"
             />
 
-           <img src="@/assets/img/btn-video.svg" alt="" id="btn_video" @click="showVideoModal()">
+           <img src="@/assets/img/btn-video.svg" alt="" id="btn_video" @click="showVideoModal()" v-if="singleTeam.youtubeVideo">
           </div>
         </div>
 
