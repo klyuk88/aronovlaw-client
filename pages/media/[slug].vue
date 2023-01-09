@@ -32,25 +32,14 @@ const currentIndex = allMedia.value.data.findIndex((element) => {
   return element.id === singleMediaData.value.data[0].id;
 });
 
-const nextElem = async () => {
-  if (currentIndex < allMedia.value.data.length - 1) {
-    allMedia.value.data.forEach((item, idx) => {
-      if (currentIndex + 1 === idx) {
-        navigateTo(`/media/${item.attributes.slug}`);
-      }
-    });
-  }
+
+const nextElem = () => {
+  usePageSingleNavNext(currentIndex, allMedia, "media");
 };
 
-const prevElem = async () => {
-   if (currentIndex > 0) {
-    allMedia.value.data.forEach((item, idx) => {
-      if (currentIndex - 1  === idx) {
-        navigateTo(`/media/${item.attributes.slug}`);
-      }
-    });
-  }
-}
+const prevElem = () => {
+  usePageSingleNavPrev(currentIndex, allMedia, "media");
+};
 </script>
 <template>
   <section class="single_page page-top">
@@ -77,7 +66,11 @@ const prevElem = async () => {
           </div>
 
           <div class="single_page-pag">
-            <button class="single_page-pag-item prev" @click.prevent="prevElem()" :disabled="currentIndex > 0 ? false : true">
+            <button
+              class="single_page-pag-item prev"
+              @click="prevElem()"
+              :disabled="currentIndex > 0 ? false : true"
+            >
               <svg
                 width="14"
                 height="10"
@@ -92,7 +85,11 @@ const prevElem = async () => {
               </svg>
               <span>Предыдущая</span>
             </button>
-            <button class="single_page-pag-item next" @click.prevent="nextElem()" :disabled="currentIndex < allMedia.data.length - 1 ? false : true">
+            <button
+              class="single_page-pag-item next"
+              @click="nextElem()"
+              :disabled="currentIndex < allMedia.data.length - 1 ? false : true"
+            >
               <span>Следующая</span>
               <svg
                 width="14"
@@ -263,6 +260,8 @@ const prevElem = async () => {
   border: none;
   color: #fff;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 300;
 }
 .single_page-pag-item:disabled {
   opacity: 0.2;

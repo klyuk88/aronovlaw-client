@@ -7,25 +7,43 @@ import "swiper/css";
 
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
-const singlePractice = ref(null)
+const singlePractice = ref(null);
 const { error, data: practice } = await useFetch(
-  () => `/api/practices?filters[slug][$eq]=${route.params.slug}&populate[teams][populate]=*`,
-  { baseURL: runtimeConfig.public.api}
+  () =>
+    `/api/practices?filters[slug][$eq]=${route.params.slug}&populate[teams][populate]=*`,
+  { baseURL: runtimeConfig.public.api }
 );
 
-singlePractice.value = practice.value.data[0].attributes
+singlePractice.value = practice.value.data[0].attributes;
 
-const content = useReplaceUploads(singlePractice.value.content)
+const content = useReplaceUploads(singlePractice.value.content);
 
+const { error: allPracticesError, data: allPractices } = await useFetch(
+  () => `/api/practices`,
+  {
+    baseURL: runtimeConfig.public.api,
+  }
+);
 
+const currentIndex = allPractices.value.data.findIndex((element) => {
+  return element.id === practice.value.data[0].id;
+});
+
+const prevElem = () => {
+  usePageSingleNavPrev(currentIndex, allPractices, "expertise/practices");
+};
+const nextElem = () => {
+  usePageSingleNavNext(currentIndex, allPractices, "expertise/practices");
+};
 </script>
+
 <template>
   <section class="practice_single page-top page-bottom">
     <div class="container">
       <div class="practice_single-header">
-        <h1 class="page-title">{{singlePractice.title}}</h1>
+        <h1 class="page-title">{{ singlePractice.title }}</h1>
         <div class="practice_single-nav">
-          <nuxt-link to="#" class="practice_single-nav-item">
+          <button class="practice_single-nav-item" @click="prevElem()" :disabled="currentIndex > 0 ? false : true">
             <svg
               width="14"
               height="10"
@@ -39,8 +57,8 @@ const content = useReplaceUploads(singlePractice.value.content)
               />
             </svg>
             Предыдущая
-          </nuxt-link>
-          <nuxt-link
+          </button>
+          <NuxtLink
             to="/expertise/practices"
             class="practice_single-nav-home_btn"
           >
@@ -56,8 +74,8 @@ const content = useReplaceUploads(singlePractice.value.content)
                 stroke="white"
               />
             </svg>
-          </nuxt-link>
-          <nuxt-link to="#" class="practice_single-nav-item">
+          </NuxtLink>
+          <button class="practice_single-nav-item" @click="nextElem()" :disabled="currentIndex < allPractices.data.length - 1 ? false : true">
             Следующая
             <svg
               width="14"
@@ -69,10 +87,9 @@ const content = useReplaceUploads(singlePractice.value.content)
               <path
                 d="M8.75 10L7.525 8.79167L10.6312 5.83333H0V4.16667H10.6312L7.525 1.20833L8.75 0L14 5L8.75 10Z"
                 fill="white"
-                fill-opacity="0.5"
               />
             </svg>
-          </nuxt-link>
+          </button>
         </div>
       </div>
 
@@ -99,8 +116,11 @@ const content = useReplaceUploads(singlePractice.value.content)
               },
             }"
           >
-            <SwiperSlide v-for="(item, index) in singlePractice.teams.data" :key="index">
-              <TeamItem  :teamItem="item"/>
+            <SwiperSlide
+              v-for="(item, index) in singlePractice.teams.data"
+              :key="index"
+            >
+              <TeamItem :teamItem="item" />
             </SwiperSlide>
           </Swiper>
         </div>
@@ -128,7 +148,7 @@ const content = useReplaceUploads(singlePractice.value.content)
   max-width: 730px;
   color: #fff;
   * {
-    color: #fff!important;
+    color: #fff !important;
   }
   h2 {
     color: #fff;
@@ -145,6 +165,11 @@ const content = useReplaceUploads(singlePractice.value.content)
 }
 .practice_single-nav-home_btn {
   opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.practice_single-nav-home_btn:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 .practice_single-nav-item {
   display: flex;
@@ -153,6 +178,15 @@ const content = useReplaceUploads(singlePractice.value.content)
   opacity: 0.5;
   font-size: 14px;
   font-weight: 300;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.practice_single-nav-item:hover {
+  opacity: 1;
+  transition: all 0.3s ease;
 }
 .practice_single-nav {
   display: flex;
@@ -169,5 +203,10 @@ const content = useReplaceUploads(singlePractice.value.content)
     align-items: flex-start;
     gap: 55px;
   }
+}
+
+.practice_single-nav-item:disabled {
+  opacity: 0.2;
+  cursor: auto;
 }
 </style>
