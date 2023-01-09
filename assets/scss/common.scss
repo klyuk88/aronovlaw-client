@@ -84,9 +84,10 @@ input, textarea {
 }
 
 .section-title {
-    font-size: 40px;
-    font-weight: 800;
+    font-size: 32px;
+    font-weight: 500;
     margin-bottom: 50px;
+    text-transform: uppercase;
 
     @media screen and (max-width: 1100px) {
         font-size: 30px;
@@ -118,7 +119,8 @@ input, textarea {
 
 .page-title {
     font-size: 32px;
-    font-weight: 800;
+    font-weight: 500;
+    text-transform: uppercase;
 
     @media screen and (max-width: 1100px) {
         font-size: 30px;

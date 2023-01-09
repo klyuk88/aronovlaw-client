@@ -1,9 +1,19 @@
+<script setup>
+const runtimeConfig = useRuntimeConfig()
+const {error, data: practices} = await useFetch(
+  () => '/api/practices', {
+    baseURL: runtimeConfig.public.api
+  }
+)
+
+
+</script>
 <template>
   <section class="expertise_page page-top page-bottom">
     <div class="container">
       <h1 class="page-title">Практики</h1>
-      <div class="expertise-row">
-        <NuxtLink to="/expertise/practices/slug" v-for="(item, index) in 16" :key="index">
+      <div class="expertise-row" v-if="practices.data.length > 0">
+        <NuxtLink :to="`/expertise/practices/${item.attributes.slug}`" v-for="(item, index) in practices.data" :key="index">
           <div class="expertise_item">
             <img
               src="@/assets/img/expertise-icon.png"
@@ -12,7 +22,7 @@
             />
             <div class="expertise_item-content">
               <h2 class="expertise_item-title">
-                Антимонопольное право
+                {{item.attributes.title}}
                 <img
                   src="@/assets/img/expertise-arrow.svg"
                   alt=""
@@ -20,14 +30,13 @@
                 />
               </h2>
               <p class="expertise_item-about">
-                Lorem Ipsum - это текст-"рыба", часто используемый в печати и
-                вэб-дизайне.
+                {{item.attributes.shortAbout}}
               </p>
             </div>
           </div>
         </NuxtLink>
       </div>
-
+      <NoContent v-else />
     </div>
   </section>
 </template>

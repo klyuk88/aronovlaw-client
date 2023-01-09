@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     ],
     runtimeConfig: {
       public: {
-        api: process.env.NODE_ENV === 'production' ? 'http://server3.1096137-cd86361.tmweb.ru' : 'http://localhost:1337'
+        api: process.env.NODE_ENV === 'production' ? process.env.API_BASE_URL_PROD : process.env.API_BASE_URL
       }
     }
 })

@@ -4,6 +4,9 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
+
+
+
 </script>
 <template>
   <section class="practice_single page-top page-bottom">
@@ -61,31 +64,11 @@ import "swiper/css";
           </nuxt-link>
         </div>
       </div>
+
       <div class="practice_single-content mt-1">
-        <p>
-          Команда "Аронов и Партнеры" на предварительном следствии и в суде
-          осуществляет защиту по уголовным делам, связанным с преступлениями в
-          сфере экономики, преступлениями против личности и преступлениями
-          против государственной власти. <br /><br />
-          Наши юристы разработали уникальную систему оказания юридической помощи
-          лицам, находящимся в СИЗО.
-        </p>
-        <h2>Услуги</h2>
-        <ul>
-          <li>
-            Защита свидетелей по уголовным делам при проведении следственных
-            действий (допрос, обыск, выемка, следственный эксперимент и тд);
-          </li>
-          <li>Защита обвиняемых при проведении следственных действий;</li>
-          <li>Подготовка свидетелей и обвиняемых к следственным действия;</li>
-          <li>Подготовка ходатайств;</li>
-          <li>
-            Подготовка жалоб на действия следователя (дознавателя) в вышестоящие
-            органы, прокуратуру т в суд в соответствии с УПК РФ;
-          </li>
-          <li>Защита обвиняемых в суде.</li>
-        </ul>
+ 
       </div>
+
       <div class="mt-1">
         <h2 class="page-title">Команда</h2>
         <div class="practice_single-team mt-1">
@@ -136,17 +119,10 @@ import "swiper/css";
   h2 {
     color: #fff;
     font-size: 32px;
-    font-weight: 800;
-    margin-top: 60px;
+    font-weight: 500;
+    text-transform: uppercase;
   }
-  ul {
-    margin-top: 60px;
-    padding-left: 20px;
-    line-height: 1.5;
-    li {
-      margin-bottom: 10px;
-    }
-  }
+
 }
 .practice_single-nav-home_btn {
   opacity: 0.5;
