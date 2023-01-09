@@ -6,24 +6,28 @@ const runtimeConfig = useRuntimeConfig();
 
 const currentPage = ref(1);
 
-const { data: mediaCategories } = useFetch(() => `/api/media-categories`, {
-  baseURL: runtimeConfig.public.api,
-});
-
-const { data: mediaItems } = await useFetch(
-  () => `/api/medias?populate[0]=thumbnail&populate[1]=practice&sort=publishedAt:desc&pagination[pageSize]=6&pagination[page]=${currentPage.value}${mediaFilter.value}`,
+const { data: mediaCategories } = useFetch(
+  () => `/api/media-categories?populate=*`,
   {
     baseURL: runtimeConfig.public.api,
   }
 );
-const filterVal = ref('');
+
+const { data: mediaItems } = await useFetch(
+  () =>
+    `/api/medias?populate[0]=thumbnail&populate[1]=practice&sort=publishedAt:desc&pagination[pageSize]=6&pagination[page]=${currentPage.value}${mediaFilter.value}`,
+  {
+    baseURL: runtimeConfig.public.api,
+  }
+);
+const filterVal = ref("");
 
 watch(filterVal, (newVal) => {
   if (newVal) {
-    currentPage.value = 1
+    currentPage.value = 1;
     mediaFilter.value = `&filters[media_categories][slug][$eq]=${newVal}`;
   } else {
-    currentPage.value = 1
+    currentPage.value = 1;
     mediaFilter.value = "";
   }
 });
@@ -57,8 +61,11 @@ const navPage = (page) => {
                   type="radio"
                   v-model="filterVal"
                   :value="item.attributes.slug"
+                  v-if="item.attributes.medias.data.length > 0"
                 />
-                <span>{{ item.attributes.title }}</span>
+                <span v-if="item.attributes.medias.data.length > 0">{{
+                  item.attributes.title
+                }}</span>
               </label>
               <label>
                 <input type="radio" v-model="filterVal" :value="''" />
@@ -68,18 +75,20 @@ const navPage = (page) => {
           </div>
         </div>
 
-        <div class="media_page-items">
+        <div class="media_page-items" v-if="mediaItems.data.length > 0">
           <MediaItem
             v-for="(item, index) in mediaItems.data"
             :key="index"
             :mediaItem="item"
           />
         </div>
+        <NoContent v-else />
       </div>
       <PagePagination
-      :pageTotal="mediaItems.meta.pagination.pageCount"
-      @changePage="navPage"
-      class="media_page-pagination" />
+        :pageTotal="mediaItems.meta.pagination.pageCount"
+        @changePage="navPage"
+        class="media_page-pagination"
+      />
     </div>
   </section>
 </template>
@@ -113,7 +122,6 @@ const navPage = (page) => {
       color: var(--accent-color);
     }
   }
-
 }
 
 .media_page-items {

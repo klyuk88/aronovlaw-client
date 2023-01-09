@@ -20,6 +20,7 @@ const pubDate = date.toLocaleString("ru-RU", {
 
 const content = useReplaceUploads(singleMedia.value.content)
 
+
 </script>
 <template>
   <section class="single_page page-top">
@@ -41,7 +42,6 @@ const content = useReplaceUploads(singleMedia.value.content)
               <path
                 d="M0.5 0.5H5.5V5.42589H0.5V0.5ZM10.5 0.5H15.5V5.42589H10.5V0.5ZM20.5 0.5H25.5V5.42589H20.5V0.5ZM0.5 10.6334H5.5V15.5593H0.5V10.6334ZM0.5 20.5741H5.5V25.5H0.5V20.5741ZM10.5 20.5741H15.5V25.5H10.5V20.5741ZM20.5 20.5741H25.5V25.5H20.5V20.5741ZM10.5 10.6334H15.5V15.5593H10.5V10.6334ZM20.5 10.6334H25.5V15.5593H20.5V10.6334Z"
                 stroke="white"
-                stroke-opacity="0.5"
               />
             </svg>
           </div>
@@ -58,7 +58,6 @@ const content = useReplaceUploads(singleMedia.value.content)
                 <path
                   d="M5.25 6.5091e-07L6.475 1.20833L3.36875 4.16667L14 4.16667L14 5.83333L3.36875 5.83333L6.475 8.79167L5.25 10L-5.13696e-07 5L5.25 6.5091e-07Z"
                   fill="white"
-                  fill-opacity="0.5"
                 />
               </svg>
               <span>Предыдущая</span>
@@ -75,7 +74,6 @@ const content = useReplaceUploads(singleMedia.value.content)
                 <path
                   d="M8.75 10L7.525 8.79167L10.6312 5.83333H0V4.16667H10.6312L7.525 1.20833L8.75 0L14 5L8.75 10Z"
                   fill="white"
-                  fill-opacity="0.5"
                 />
               </svg>
             </a>
@@ -144,15 +142,27 @@ const content = useReplaceUploads(singleMedia.value.content)
     display: flex;
     align-items: center;
     gap: 10px;
+    opacity: 0.5;
+    transition: opacity .3s ease
     span {
       font-size: 14px;
       font-weight: 300;
-      opacity: 0.5;
     }
+  }
+  &-item:hover {
+    transition: opacity .3s ease;
+    opacity: 1;
   }
 }
 .single_page-nav_icon {
   cursor: pointer;
+  opacity: 0.5;
+  transition: opacity .3s ease;
+}
+
+.single_page-nav_icon:hover {
+    opacity: 1;
+  transition: opacity .3s ease;
 }
 
 .single_page-cover {
