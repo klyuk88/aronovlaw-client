@@ -5,6 +5,17 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
 
+const runtimeConfig = useRuntimeConfig();
+const route = useRoute();
+const singlePractice = ref(null)
+const { error, data: practice } = await useFetch(
+  () => `/api/practices?filters[slug][$eq]=${route.params.slug}&populate[teams][populate]=*`,
+  { baseURL: runtimeConfig.public.api}
+);
+
+singlePractice.value = practice.value.data[0].attributes
+
+const content = useReplaceUploads(singlePractice.value.content)
 
 
 </script>
@@ -12,7 +23,7 @@ import "swiper/css";
   <section class="practice_single page-top page-bottom">
     <div class="container">
       <div class="practice_single-header">
-        <h1 class="page-title">Уголовное право</h1>
+        <h1 class="page-title">{{singlePractice.title}}</h1>
         <div class="practice_single-nav">
           <nuxt-link to="#" class="practice_single-nav-item">
             <svg
@@ -65,11 +76,9 @@ import "swiper/css";
         </div>
       </div>
 
-      <div class="practice_single-content mt-1">
- 
-      </div>
+      <div class="practice_single-content mt-1" v-html="content"></div>
 
-      <div class="mt-1">
+      <div class="mt-1" v-if="singlePractice.teams.data.length > 0">
         <h2 class="page-title">Команда</h2>
         <div class="practice_single-team mt-1">
           <Swiper
@@ -80,18 +89,18 @@ import "swiper/css";
             :pagination="{ clickable: true }"
             :breakpoints="{
               320: {
-                slidesPerView: 1
+                slidesPerView: 1,
               },
               768: {
-                slidesPerView: 2
+                slidesPerView: 2,
               },
               1110: {
-                slidesPerView: 4
+                slidesPerView: 4,
               },
             }"
           >
-            <SwiperSlide v-for="(item, index) in 6" :key="index">
-              <!-- <TeamItem /> -->
+            <SwiperSlide v-for="(item, index) in singlePractice.teams.data" :key="index">
+              <TeamItem  :teamItem="item"/>
             </SwiperSlide>
           </Swiper>
         </div>
@@ -103,10 +112,12 @@ import "swiper/css";
 <style lang="scss">
 .practice_single-team {
   overflow: hidden;
-  .swiper-button-next, .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-button-prev {
     color: #fff;
   }
-  .swiper-button-next:after, .swiper-button-prev:after {
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
     font-size: 25px;
   }
   .swiper-pagination-bullet.swiper-pagination-bullet-active {
@@ -116,13 +127,21 @@ import "swiper/css";
 .practice_single-content {
   max-width: 730px;
   color: #fff;
+  * {
+    color: #fff!important;
+  }
   h2 {
     color: #fff;
     font-size: 32px;
     font-weight: 500;
     text-transform: uppercase;
   }
-
+  ul {
+    padding-left: 20px;
+    li {
+      margin-bottom: 15px;
+    }
+  }
 }
 .practice_single-nav-home_btn {
   opacity: 0.5;
