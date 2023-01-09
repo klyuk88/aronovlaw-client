@@ -1,14 +1,15 @@
 <script setup>
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
-const singleMedia = ref(null)
+const singleMedia = ref(null);
 const { error, data: singleMediaData } = await useFetch(
-  () => `/api/medias?filters[slug][$eq]=${route.params.slug}&populate[team][populate]=*&populate[cover]=*`,
+  () =>
+    `/api/medias?filters[slug][$eq]=${route.params.slug}&populate[team][populate]=*&populate[cover]=*`,
   {
     baseURL: runtimeConfig.public.api,
   }
 );
-singleMedia.value = singleMediaData.value.data[0].attributes
+singleMedia.value = singleMediaData.value.data[0].attributes;
 
 const date = new Date(singleMedia.value.publishedAt);
 
@@ -18,9 +19,38 @@ const pubDate = date.toLocaleString("ru-RU", {
   year: "numeric",
 });
 
-const content = useReplaceUploads(singleMedia.value.content)
+const content = useReplaceUploads(singleMedia.value.content);
 
+const { error: allMediaError, data: allMedia } = await useFetch(
+  () => `/api/medias`,
+  {
+    baseURL: runtimeConfig.public.api,
+  }
+);
 
+const currentIndex = allMedia.value.data.findIndex((element) => {
+  return element.id === singleMediaData.value.data[0].id;
+});
+
+const nextElem = async () => {
+  if (currentIndex < allMedia.value.data.length - 1) {
+    allMedia.value.data.forEach((item, idx) => {
+      if (currentIndex + 1 === idx) {
+        navigateTo(`/media/${item.attributes.slug}`);
+      }
+    });
+  }
+};
+
+const prevElem = async () => {
+   if (currentIndex > 0) {
+    allMedia.value.data.forEach((item, idx) => {
+      if (currentIndex - 1  === idx) {
+        navigateTo(`/media/${item.attributes.slug}`);
+      }
+    });
+  }
+}
 </script>
 <template>
   <section class="single_page page-top">
@@ -47,7 +77,7 @@ const content = useReplaceUploads(singleMedia.value.content)
           </div>
 
           <div class="single_page-pag">
-            <a href="#" class="single_page-pag-item prev">
+            <button class="single_page-pag-item prev" @click.prevent="prevElem()" :disabled="currentIndex > 0 ? false : true">
               <svg
                 width="14"
                 height="10"
@@ -61,8 +91,8 @@ const content = useReplaceUploads(singleMedia.value.content)
                 />
               </svg>
               <span>Предыдущая</span>
-            </a>
-            <a href="#" class="single_page-pag-item next">
+            </button>
+            <button class="single_page-pag-item next" @click.prevent="nextElem()" :disabled="currentIndex < allMedia.data.length - 1 ? false : true">
               <span>Следующая</span>
               <svg
                 width="14"
@@ -76,16 +106,13 @@ const content = useReplaceUploads(singleMedia.value.content)
                   fill="white"
                 />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
         <div>
           <img
             v-if="singleMedia.cover.data"
-            :src="
-              $config.public.api +
-              singleMedia.cover.data.attributes.url
-            "
+            :src="$config.public.api + singleMedia.cover.data.attributes.url"
             alt="image"
             class="single_page-cover"
           />
@@ -98,15 +125,20 @@ const content = useReplaceUploads(singleMedia.value.content)
 
           <div class="single_page-content" v-html="content"></div>
 
-          <div class="single_page-author"
-          v-if="singleMedia.team.data"
-          >
+          <div class="single_page-author" v-if="singleMedia.team.data">
             <div class="author_photo">
-              <img :src="$config.public.api + singleMedia.team.data.attributes.avatar.data.attributes.url" alt="author-photo" />
+              <img
+                :src="
+                  $config.public.api +
+                  singleMedia.team.data.attributes.avatar.data.attributes.url
+                "
+                alt="author-photo"
+              />
             </div>
             <p class="author_name">
-              {{singleMedia.team.data.attributes.post}} МКА «Аронов и партнеры»<br />
-              {{singleMedia.team.data.attributes.name}}
+              {{ singleMedia.team.data.attributes.post }} МКА «Аронов и
+              партнеры»<br />
+              {{ singleMedia.team.data.attributes.name }}
             </p>
           </div>
         </div>
@@ -143,26 +175,25 @@ const content = useReplaceUploads(singleMedia.value.content)
     align-items: center;
     gap: 10px;
     opacity: 0.5;
-    transition: opacity .3s ease
-    span {
+    transition: opacity 0.3s ease span {
       font-size: 14px;
       font-weight: 300;
     }
   }
   &-item:hover {
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
     opacity: 1;
   }
 }
 .single_page-nav_icon {
   cursor: pointer;
   opacity: 0.5;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .single_page-nav_icon:hover {
-    opacity: 1;
-  transition: opacity .3s ease;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .single_page-cover {
@@ -226,5 +257,15 @@ const content = useReplaceUploads(singleMedia.value.content)
     font-size: 24px;
     font-weight: 600;
   }
+}
+.single_page-pag-item {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+.single_page-pag-item:disabled {
+  opacity: 0.2;
+  cursor: auto;
 }
 </style>
