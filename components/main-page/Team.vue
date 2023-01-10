@@ -18,7 +18,7 @@ const prevSlide = () => {
   teamSlider.value.slidePrev();
 };
 
-const {data: teamData} = useFetch(
+const {data: teamData} = await useFetch(
   () => '/api/teams?populate=avatar',
   {
     baseURL: config.public.api

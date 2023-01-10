@@ -16,9 +16,18 @@ const nextSlide = () => {
 const prevSlide = () => {
   clientsSlider.value.slidePrev();
 };
+
+const runtimeConfig = useRuntimeConfig()
+
+const {data: clientsData} = await useFetch(
+  () => '/api/clients?populate=*',
+  {
+    baseURL: runtimeConfig.public.api
+  }
+)
 </script>
 <template>
-  <section class="clients section-top">
+  <section class="clients section-top" v-if="clientsData.data.length > 0">
     <div class="container">
       <h2 class="section-title">Клиенты</h2>
       <div class="clients-content">
@@ -38,11 +47,16 @@ const prevSlide = () => {
         >
           <SwiperSlide
             class="clients-slider-item"
-            v-for="(item, index) in 7"
+            v-for="(item, index) in clientsData.data"
             :key="index"
-            ><img src="@/assets/img/client-logo.png" alt=""
-          /></SwiperSlide>
+            >
+            <img
+            :src="$config.public.api + item.attributes.logo.data.attributes.url"
+            alt="client-logo"
+          />
+          </SwiperSlide>
         </Swiper>
+
         <img
           class="clients-slider-nav prev"
           src="@/assets/img/chevron-left.svg"
