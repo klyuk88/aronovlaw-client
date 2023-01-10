@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+const config = useRuntimeConfig()
 
 const teamSlider = ref(null);
 
@@ -16,9 +17,17 @@ const nextSlide = () => {
 const prevSlide = () => {
   teamSlider.value.slidePrev();
 };
+
+const {data: teamData} = useFetch(
+  () => '/api/teams?populate=avatar',
+  {
+    baseURL: config.public.api
+  }
+)
+
 </script>
 <template>
-  <section class="team section-top">
+  <section class="team section-top" v-if="teamData.data.length > 0">
     <div class="container">
       <h2 class="section-title">Команда</h2>
     </div>
@@ -56,55 +65,23 @@ const prevSlide = () => {
           }
         }"
       >
-        <SwiperSlide v-for="(item, index) in 12" :key="index">
+        <SwiperSlide v-for="(item, index) in teamData.data" :key="index">
           <img
-            src="@/assets/img/team/item-1.jpg"
+            :src="`${$config.public.api}${item.attributes.avatar.data.attributes.url}`"
             alt=""
             class="team-slider-image"
           />
           <div class="team_slider-item_names">
-            <h3 class="team_slider-item_names-name">Александр Аронов</h3>
-            <p class="team_slider-item_names-post">Управляющий партнер</p>
+            <h3 class="team_slider-item_names-name">{{item.attributes.name}}</h3>
+            <p class="team_slider-item_names-post">{{item.attributes.post}}</p>
           </div>
         </SwiperSlide>
       </Swiper>
     </div>
   </section>
-  <section class="estimation">
-    <div class="container">
-      <h2 class="estimation-title">Независимая оценка</h2>
-      <div class="estimation-content">
-        <div class="estimation-item">
-          <div class="estimation-item-image_wrap">
-            <img src="@/assets/img/pravo300-logo.svg" alt="" />
-          </div>
-          
-          <h3 class="estimation-item-title">
-            Рейтинг юридических<br />компаний России
-          </h3>
-        </div>
-
-        <div class="estimation-item">
-          <div class="estimation-item-image_wrap"><img src="@/assets/img/kommersant_logo.svg" alt="" /></div>
-          
-          <h3 class="estimation-item-title">
-            Рейтинг юридических<br />компаний России
-          </h3>
-        </div>
-
-        <div class="estimation-item">
-          <div class="estimation-item-image_wrap"><img src="@/assets/img/forbes_logo.svg" alt="" /></div>
-          
-          <h3 class="estimation-item-title">
-            Рейтинг юридических<br />компаний России
-          </h3>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="slogan section-top">
-    <h1 class="slogan-title">Слоган фраза компании</h1>
+    <h1 class="slogan-title">Сочетание глубоких знаний и обширной практики</h1>
   </section>
 </template>
 <style lang="scss">
@@ -185,74 +162,18 @@ const prevSlide = () => {
   }
 }
 
-.estimation {
-  // padding-top: 68px;
-  &-title {
-    font-size: 32px;
-    font-weight: 500;
-    text-align: center;
-    @media screen and (max-width: 1100px) {
-      font-size: 24px;
-      font-weight: 400;
-    }
-  }
-  &-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 70px;
-    @media screen and (max-width: 1100px) {
-      margin-top: 60px;
-      grid-template-columns: 100%;
-      row-gap: 30px
-    }
-  }
-  &-item {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    &-title {
-      font-size: 14px;
-      font-weight: 600;
-      @media screen and (max-width: 1100px) {
-        font-weight: 400;
-      }
-    }
-  }
-  &-item:first-child {
-    img {
-      width: 37px;
-      @media screen and (max-width: 1100px) {
-        width: 35px;
-      }
-      
-    }
-  }
-  &-item:nth-child(2) {
-    img {
-      width: 84px;
-      @media screen and (max-width: 1100px) {
-        width: 67px;
-      }
-    }
-  }
-  &-item:nth-child(3) {
-    img {
-      width: 105px;
-      @media screen and (max-width: 1100px) {
-        width: 55px;
-      }
-    }
-  }
-}
+
 
 .slogan-title {
   font-size: 48px;
-  font-weight: 800;
+  font-weight: 500;
   text-align: center;
   text-transform: uppercase;
+  width: 60%;
+  margin: 0 auto;
   @media screen and (max-width: 1100px) {
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 24px;
+    width: 100%;
   }
 }
 
@@ -282,18 +203,6 @@ const prevSlide = () => {
   font-size: 13px;
   font-weight: 300;
   margin-top: 10px;
-}
-
-
-.estimation-item-image_wrap {
-  @media screen and (max-width: 1100px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    background: linear-gradient(70.01deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
-    height: 60px;
-  }
 }
 
 

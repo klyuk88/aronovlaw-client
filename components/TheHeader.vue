@@ -12,9 +12,9 @@ const {data: practices} = await useFetch(
   <header>
     <div class="container">
       <div class="header-content">
-        <NuxtLink to="/"
+        <!-- <NuxtLink to="/"
           ><img src="@/assets/img/logo.svg" alt="" class="logo header"
-        /></NuxtLink>
+        /></NuxtLink> -->
         <nav>
           <ul class="menu">
             <li>
@@ -172,7 +172,7 @@ header {
     height: auto;
   }
   nav {
-    margin-left: 70px;
+    // margin-left: 70px;
     .menu {
       list-style: none;
       padding: 0;

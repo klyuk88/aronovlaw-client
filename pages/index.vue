@@ -1,9 +1,10 @@
 <template>
   <div>
     <MainPageScreen />
+    <MainPageRatings/>
     <MainPageTeam />
     <MainPageMedia />
     <MainPageClients />
-    <MainPageMap />
+    <!-- <MainPageMap /> -->
   </div>
 </template>

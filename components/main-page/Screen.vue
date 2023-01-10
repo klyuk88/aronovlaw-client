@@ -6,44 +6,28 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const runTimeConfig = useRuntimeConfig()
-
 const mainSlider = ref(null);
 
 const onSwiper = (swiper) => {
   mainSlider.value = swiper;
 };
-const news = ref([
-  {
-    category: "Семейное / наследственное право",
-    date: "12.12.22",
-    content:
-      "Евгений Розенблат назначен руководителем практики сложных судебных споров МКА “Аронов и Партнеры”",
-  },
-  {
-    category: "Семейное / право",
-    date: "13.12.22",
-    content:
-      "Розенблат назначен руководителем практики сложных судебных споров МКА “Аронов и Партнеры”",
-  },
-  {
-    category: "Семейное / наследственное",
-    date: "14.12.22",
-    content:
-      "назначен руководителем практики сложных судебных споров МКА “Аронов и Партнеры”",
-  },
-]);
 
+const runtimeConfig = useRuntimeConfig();
+const { error, data: newsData } = await useFetch(
+  () => "/api/medias?populate=practice",
+  {
+    baseURL: runtimeConfig.public.api,
+  }
+);
 </script>
 <template>
   <div>
     <section class="main">
       <div class="container">
         <div class="main-content">
-
           <div class="col-1">
             <img
-              src="@/assets/img/logo-big.svg"
+              src="@/assets/img/aronov_partners_logo.svg"
               alt="logo big"
               class="big-logo"
             />
@@ -62,33 +46,58 @@ const news = ref([
               :direction="'vertical'"
               class="main-slider"
             >
-              <SwiperSlide v-for="(item, index) in news" :key="index">
+              <SwiperSlide>
                 <div class="slider-item">
                   <div class="slider-item-content">
-                    <div class="slider-item-header">
-                      <p class="category">{{ item.category }}</p>
-                      <p class="date">{{ item.date }}</p>
-                    </div>
+                    <div class="slider-item-header"></div>
 
                     <div class="slider-item-body">
-                      <p>
-                        {{ item.content }}
+                      <p class="slogan_slider_title">
+                        Московская коллегия адвокатов объединенная
+                        профессиональными юристами в области российского и
+                        международного права
                       </p>
                     </div>
-
-                    <NuxtLink
-                      :to="$config.public.api + item.link"
-                      class="slider-item-link"
-                    >
-                      Читать далее
-                      <img
-                        src="@/assets/img/arrow-right.svg"
-                        alt="arrow right"
-                      />
-                    </NuxtLink>
                   </div>
                 </div>
               </SwiperSlide>
+              <template v-if="newsData.data.length > 0">
+                <SwiperSlide
+                  v-for="(item, index) in newsData.data"
+                  :key="index"
+                >
+                  <div class="slider-item">
+                    <div class="slider-item-content">
+                      <div class="slider-item-header">
+                        <p
+                          class="category"
+                          v-if="item.attributes.practice.data"
+                        >
+                          {{ item.attributes.practice.data.attributes.title }}
+                        </p>
+                        <p class="date">{{ item.date }}</p>
+                      </div>
+
+                      <div class="slider-item-body">
+                        <p class="news_body">
+                          {{ item.attributes.shortAbout }}
+                        </p>
+                      </div>
+
+                      <NuxtLink
+                        :to="`${$config.public.api}/medias/${item.attributes.slug}`"
+                        class="slider-item-link"
+                      >
+                        Читать далее
+                        <img
+                          src="@/assets/img/arrow-right.svg"
+                          alt="arrow right"
+                        />
+                      </NuxtLink>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              </template>
             </Swiper>
           </div>
 
@@ -100,9 +109,7 @@ const news = ref([
               playsinline
               class="main-planet video"
               :src="`${$config.public.api}/uploads/planet_black_aa7c57e8f9.mp4`"
-            >
-            </video>
-            
+            ></video>
           </div>
         </div>
       </div>
@@ -135,9 +142,11 @@ const news = ref([
   }
 
   .big-logo {
-    width: 341px;
+    width: 367px;
     height: auto;
-    margin-top: 90px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 80px;
     @media screen and (max-width: 1100px) {
       margin-top: 50px;
       margin-inline: auto;
@@ -176,6 +185,12 @@ const news = ref([
       font-size: 18px;
       font-weight: 400;
       margin-top: 23px;
+      .news_body {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
     }
     &-link {
       margin-top: 20px;
@@ -221,7 +236,9 @@ const news = ref([
   text-align: center;
   @media screen and (max-width: 1100px) {
     display: block;
-
   }
+}
+.slogan_slider_title {
+  text-align: center;
 }
 </style>

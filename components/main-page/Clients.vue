@@ -62,6 +62,7 @@ const prevSlide = () => {
 
 <style lang="scss">
 .clients {
+  padding-bottom: 180px;
   @media screen and (max-width: 1100px) {
     padding-bottom: 120px;
   }
