@@ -3,7 +3,6 @@
     <div class="container">
       <div class="about_page-header">
         <h1 class="page-title">О нас</h1>
-        <img src="~/assets/img/big-logo-footer.svg" alt="logo" />
       </div>
       <div class="about_page-content mt-1">
         <p>

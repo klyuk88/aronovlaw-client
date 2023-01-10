@@ -18,6 +18,9 @@ const {data: practices} = await useFetch(
         <nav>
           <ul class="menu">
             <li>
+              <NuxtLink to="/">Главная</NuxtLink>
+            </li>
+            <li>
               <NuxtLink to="/about">О нас</NuxtLink>
             </li>
             <li>
@@ -98,8 +101,8 @@ header {
       .submenu_wrap {
         position: fixed;
         z-index: 99;
-        transform: translateY(99px) translateX(-50%);
-        padding-top: 60px;
+        transform: translateY(80px) translateX(-50%);
+        padding-top: 70px;
         left: 50%;
         top: 0;
         display: none;
